@@ -197,30 +197,10 @@ public class DatabaseConnectionHandler {
 			PrintablePreparedStatement ps = new PrintablePreparedStatement(connection.prepareStatement(query), query, false);
 			ps.setInt(1, model.getTagID());
 			ps.setString(2, model.getAnimalType().toString().toLowerCase());
-
-			if (model.getAge() == -1) {
-				ps.setNull(3, Types.INTEGER);
-			} else {
-				ps.setInt(3, model.getAge());
-			}
-
-			if (model.getWeight() == -1) {
-				ps.setNull(4, Types.DOUBLE);
-			} else {
-				ps.setDouble(4, model.getWeight());
-			}
-
-			if (model.getLastFed() == Date.valueOf("01/01/2001")) {
-				ps.setNull(5, Types.DATE);
-			} else {
-				ps.setDate(5, model.getLastFed());
-			}
-
-			if (model.getLastViolatedForHarvestedGoods() == Date.valueOf("01/01/2001")) {
-				ps.setNull(5, Types.DATE);
-			} else {
-				ps.setDate(6, model.getLastViolatedForHarvestedGoods());
-			}
+			ps.setInt(3, model.getAge());
+			ps.setDouble(4, model.getWeight());
+			ps.setDate(5, model.getLastFed());
+			ps.setDate(6, model.getLastViolatedForHarvestedGoods());
 
 			ps.executeUpdate();
 			connection.commit();
