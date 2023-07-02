@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context.xsd
+     http://www.springframework.org/schema/aop
+     http://www.springframework.org/schema/aop/spring-aop.xsd
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- Data Source Bean -->
+<!--    <bean id="dataSource"
+          class="com.alibaba.druid.pool.DruidDataSource"
+          init-method="init" destroy-method="close">
+        <property name="driverClassName" value="${mysql.jdbc.driverClassName}" />
+        <property name="url" value="${mysql.jdbc.url}" />
+        <property name="username" value="${mysql.jdbc.username}" />
+        <property name="password" value="${mysql.jdbc.password}" />
+        <property name="defaultAutoCommit" value="false"/>
+
+        &lt;!&ndash; You could use other data source manager driver such as: class="org.springframework.jdbc.datasource.DriverManagerDataSource". If so, the properties below should be removed based on the schema of xml. &ndash;&gt;
+        <property name="initialSize" value="${mysql.jdbc.initialSize}" />
+        <property name="maxActive" value="${mysql.jdbc.maxActive}" />
+        <property name="maxIdle" value="${mysql.jdbc.maxIdle}" />
+        <property name="minIdle" value="${mysql.jdbc.minIdle}" />
+        <property name="maxWait" value="${mysql.jdbc.maxWait}" />
+    </bean>
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${mysql.jdbc.driverClassName}" />
+        <property name="url" value="${mysql.jdbc.url}" />
+        <property name="username" value="${mysql.jdbc.username}" />
+        <property name="password" value="${mysql.jdbc.password}" />
+    </bean>-->
+
+<!--    &lt;!&ndash; Auto scan components &ndash;&gt;
+    <context:component-scan base-package="com.az.controller" />
+
+    &lt;!&ndash; Autowired Annotation Bean &ndash;&gt;
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />-->
+
+    <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+        <property name="driverClassName" value="${mysql.jdbc.driverClassName}"/>
+        <property name="jdbcUrl" value="${mysql.jdbc.url}"/>
+        <property name="username" value="${mysql.jdbc.username}"/>
+        <property name="password" value="${mysql.jdbc.password}"/>
+        <property name="autoCommit" value="false"/>
+    </bean>
+
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <constructor-arg ref="hikariConfig" />
+    </bean>
+
+<!--    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+<!--        <property name="dataSource" ref="dataSource" />-->
+<!--    </bean>-->
+
+<!--    <tx:annotation-driven transaction-manager="transactionManager" />-->
+
+  <!--  <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <property name="dataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlDataSource" />
+        <property name="maximumPoolSize" value="5" />
+        <property name="maxLifetime" value="30000" />
+        <property name="idleTimeout" value="30000" />
+        <property name="dataSourceProperties">
+            <props>
+                <prop key="url">${mysql.jdbc.url}</prop>
+                <prop key="user">${mysql.jdbc.username}</prop>
+                <prop key="password">${mysql.jdbc.password}</prop>
+                <prop key="prepStmtCacheSize">250</prop>
+                <prop key="prepStmtCacheSqlLimit">2048</prop>
+                <prop key="cachePrepStmts">true</prop>
+                <prop key="useServerPrepStmts">true</prop>
+            </props>
+        </property>
+    </bean>-->
+
+    <!-- SQL Session Factory Bean -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <!-- auto scan mapping xml files -->
+        <property name="mapperLocations" value="classpath:com/fms/mapper/*.xml" />
+        <!-- If there are special configurations such as alias, could add: <property name="configLocation" value="classpath:mybatis-config.xml"></property> -->
+<!--        <property name="transactionFactory">
+            <bean class="org.apache.ibatis.transaction.managed.ManagedTransactionFactory" />
+        </property>-->
+    </bean>
+
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+        <constructor-arg index="1" value="BATCH"/>
+    </bean>
+
+<!--    <bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+        <property name="mapperInterface" value="dao.UserMapper"/>
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+    </bean>-->
+
+    <!-- DAO interfaces -->
+<!--    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.az.dao" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+    </bean>-->
+
+</beans>

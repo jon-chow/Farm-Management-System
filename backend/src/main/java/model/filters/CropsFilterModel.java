@@ -1,9 +1,15 @@
 package model.filters;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import model.enums.CropStatus;
 import model.enums.CropType;
 import model.enums.CropVariant;
 
+@AllArgsConstructor
+@Builder
+@Getter
 public class CropsFilterModel {
 
     private final CropType cropType;
@@ -11,15 +17,6 @@ public class CropsFilterModel {
     private final CropStatus cropStatus;
     private final int minQuantity;
     private final int maxQuantity;
-
-    public CropsFilterModel(CropType cropType, CropVariant cropVariant, CropStatus cropStatus, int minQuantity,
-        int maxQuantity) {
-        this.cropType = cropType;
-        this.cropVariant = cropVariant;
-        this.cropStatus = cropStatus;
-        this.minQuantity = minQuantity;
-        this.maxQuantity = maxQuantity;
-    }
 
     /**
      *
@@ -62,25 +59,4 @@ public class CropsFilterModel {
 
         return queryString;
     }
-
-    public CropType getCropType() {
-        return cropType;
-    }
-
-    public CropVariant getCropVariant() {
-        return cropVariant;
-    }
-
-    public CropStatus getCropStatus() {
-        return cropStatus;
-    }
-
-    public int getMinQuantity() {
-        return minQuantity;
-    }
-
-    public int getMaxQuantity() {
-        return maxQuantity;
-    }
-
 }

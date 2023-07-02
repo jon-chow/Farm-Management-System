@@ -1,5 +1,8 @@
 package model.models.crop;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import model.enums.CropStatus;
 import model.enums.CropType;
 import model.enums.CropVariant;
@@ -9,35 +12,16 @@ import org.json.JSONObject;
 /**
  * The intent for this class is to update/store information about a single livestock
  */
-public class  CropModel {
 
+@AllArgsConstructor
+@Builder
+@Getter
+public class  CropModel {
     private final CropType cropType;
     private final CropVariant cropVariant;
     private final CropStatus cropStatus;
     private final int quantity;
 
-    public CropModel(CropType cropType, CropVariant cropVariant, CropStatus cropStatus, int quantity) {
-        this.cropType = cropType;
-        this.cropVariant = cropVariant;
-        this.cropStatus = cropStatus;
-        this.quantity = quantity;
-    }
-
-    public CropType getCropType() {
-        return cropType;
-    }
-
-    public CropVariant getCropVariant() {
-        return cropVariant;
-    }
-
-    public CropStatus getCropStatus() {
-        return cropStatus;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
 
     public JSONObject toJSON() {
         JSONObject json = new JSONObject();

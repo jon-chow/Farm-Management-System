@@ -1,34 +1,19 @@
 package model.models.livestock;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import model.enums.AnimalType;
 import org.json.JSONObject;
 
+@AllArgsConstructor
+@Builder
+@Getter
 public class Livestock_3_Model {
-
     private final AnimalType animalType;
     private final int age;
     private final boolean harvestable;
-
-    public Livestock_3_Model(AnimalType animalType, int age,
-                             boolean harvestable) {
-        this.animalType = animalType;
-        this.age = age;
-        this.harvestable = harvestable;
-    }
-
-
-    public AnimalType getAnimalType() {
-        return animalType;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public boolean isHarvestable() {
-        return harvestable;
-    }
-
 
     public JSONObject toJSON() {
         JSONObject json = new JSONObject();

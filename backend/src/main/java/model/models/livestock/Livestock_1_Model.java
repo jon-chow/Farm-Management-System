@@ -1,33 +1,20 @@
 package model.models.livestock;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import model.enums.AnimalType;
 import model.enums.CropType;
 import org.json.JSONObject;
 
+@AllArgsConstructor
+@Builder
+@Getter
 public class Livestock_1_Model {
     private final AnimalType animalType;
     private final CropType diet;
     private final double weight;
 
-
-    public Livestock_1_Model(AnimalType animalType, CropType diet,
-                             double weight) {
-        this.animalType = animalType;
-        this.diet = diet;
-        this.weight = weight;
-    }
-
-    public AnimalType getAnimalType() {
-        return animalType;
-    }
-
-    public CropType getDiet() {
-        return diet;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
 
     public JSONObject toJSON() {
         JSONObject json = new JSONObject();

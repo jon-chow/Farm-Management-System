@@ -1,8 +1,14 @@
 package model.filters;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import model.enums.AnimalType;
 import model.enums.CropType;
 
+@AllArgsConstructor
+@Builder
+@Getter
 public class LivestockFilterModel {
 
     private final String harvestable;
@@ -12,24 +18,9 @@ public class LivestockFilterModel {
     private final int maxAge;
     private final int minTagID;
     private final int maxTagID;
-
-
-
     private final int minWaterSpent;
     private final int minFoodSpent;
 
-    public LivestockFilterModel(String harvestable, AnimalType animalType, CropType diet, int minAge, int maxAge,
-                                int minTagID, int maxTagID, int minWaterSpent, int minFoodSpent) {
-        this.harvestable = harvestable.toLowerCase();
-        this.animalType = animalType;
-        this.diet = diet;
-        this.minAge = minAge;
-        this.maxAge = maxAge;
-        this.minTagID = minTagID;
-        this.maxTagID = maxTagID;
-        this.minWaterSpent = minWaterSpent;
-        this.minFoodSpent = minFoodSpent;
-    }
 
     /**
      *
@@ -71,9 +62,9 @@ public class LivestockFilterModel {
         }
 
 
-        if (isHarvestable().equals("false")) {
+        if (getHarvestable().equals("false")) {
             queryString += " AND (harvestable = " + 0 + " )  ";
-        } else if (isHarvestable().equals("true")) {
+        } else if (getHarvestable().equals("true")) {
             queryString += " AND (harvestable = " + 1 + " )  ";
         }
 
@@ -115,41 +106,5 @@ public class LivestockFilterModel {
         }
 
         return query;
-    }
-
-    public String isHarvestable() {
-        return harvestable;
-    }
-
-    public AnimalType getAnimalType() {
-        return animalType;
-    }
-
-    public CropType getDiet() {
-        return diet;
-    }
-
-    public int getMinAge() {
-        return minAge;
-    }
-
-    public int getMaxAge() {
-        return maxAge;
-    }
-
-    public int getMinTagID() {
-        return minTagID;
-    }
-
-    public int getMaxTagID() {
-        return maxTagID;
-    }
-
-    public int getMinWaterSpent() {
-        return minWaterSpent;
-    }
-
-    public int getMinFoodSpent() {
-        return minFoodSpent;
     }
 }

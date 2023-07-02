@@ -1,5 +1,8 @@
 package model.models.livestock;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import model.enums.AnimalType;
 
 import java.sql.Date;
@@ -9,6 +12,9 @@ import org.json.JSONObject;
 /**
  * The intent for this class is to update/store information about a single livestock
  */
+@AllArgsConstructor
+@Builder
+@Getter
 public class Livestock_4_Model {
 
     private final int tagID;
@@ -18,40 +24,6 @@ public class Livestock_4_Model {
     private final Date lastFed;
     private final Date lastViolatedForHarvestedGoods;
 
-    public Livestock_4_Model(int tagID, AnimalType animalType, int age,
-                             double weight, Date lastFed,
-                             Date lastViolatedForHarvestedGoods) {
-        this.tagID = tagID;
-        this.animalType = animalType;
-        this.age = age;
-        this.weight = weight;
-        this.lastFed = lastFed;
-        this.lastViolatedForHarvestedGoods = lastViolatedForHarvestedGoods;
-    }
-
-    public int getTagID() {
-        return tagID;
-    }
-
-    public AnimalType getAnimalType() {
-        return animalType;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public Date getLastFed() {
-        return lastFed;
-    }
-
-    public Date getLastViolatedForHarvestedGoods() {
-        return lastViolatedForHarvestedGoods;
-    }
 
     public JSONObject toJSON() {
         JSONObject json = new JSONObject();

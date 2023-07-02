@@ -1,11 +1,17 @@
 package model.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import model.enums.CropType;
 import model.enums.FieldState;
 
 /**
  * The intent for this class is to update/store information about a single field
  */
+@AllArgsConstructor
+@Builder
+@Getter
 public class FieldModel {
 
     private final int plotNum;
@@ -14,40 +20,4 @@ public class FieldModel {
     private final int capacity;
     private final FieldState fieldState;
     private final boolean needPesticides;
-
-
-    public FieldModel(int plotNum, double nutrientLevels, CropType suitableCrops,
-                      int capacity, FieldState fieldState, boolean needPesticides) {
-        this.plotNum = plotNum;
-        this.nutrientLevels = nutrientLevels;
-        this.suitableCrops = suitableCrops;
-        this.capacity = capacity;
-        this.fieldState = fieldState;
-        this.needPesticides = needPesticides;
-    }
-
-    public int getPlotNum() {
-        return plotNum;
-    }
-
-    public double getNutrientLevels() {
-        return nutrientLevels;
-    }
-
-    public CropType getSuitableCrops() {
-        return suitableCrops;
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public FieldState getFieldState() {
-        return fieldState;
-    }
-
-    public boolean isNeedPesticides() {
-        return needPesticides;
-    }
-
 }
