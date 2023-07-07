@@ -1,6 +1,8 @@
 package com.server.service;
 
+import dao.ILivestockDao;
 import database.DatabaseConnectionHandler;
+import dto.LivestockDto;
 import jakarta.servlet.http.HttpServletRequest;
 import model.enums.ActionType;
 import model.enums.AnimalType;
@@ -10,9 +12,14 @@ import model.models.livestock.LivestockModel;
 import model.models.livestock.Livestock_4_Model;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionManager;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class LivestockService extends BaseService implements ILivestockService {
@@ -20,54 +27,80 @@ public class LivestockService extends BaseService implements ILivestockService {
     // TODO: remove this and refactor class.
     private DatabaseConnectionHandler dbHandler = null;
 
+    // TODO: modify config file to autowire transaction manager.
+    // @Autowired
+    PlatformTransactionManager transactionManager;
+
+//    @Autowired
+    private ILivestockDao livestockDao;
+
     /**
      * Retrieves all livestock data from database
      */
-    public JSONArray getLivestock() {
-        ArrayList<JSONObject> livestock = dbHandler.getLivestock();
-        JSONArray livestockArray = new JSONArray(livestock);
-        return livestockArray;
+    @Transactional
+    public List<LivestockDto> getLivestock() {
+        List<LivestockModel> livestockList = livestockDao.getLivestock();
+
+        // TODO: convert from model to dto
+        return null;
+        // return livestockList;
     }
 
-    public JSONArray getLivestock(HttpServletRequest req) {
+    public List<LivestockDto> getLivestock(HttpServletRequest req) {
         ArrayList<JSONObject> livestock = dbHandler.getLivestock();
         JSONArray livestockArray = new JSONArray(livestock);
-        return livestockArray;
+
+        // TODO: convert from model to dto
+        return null;
+        // return livestockArray;
     }
 
-    public JSONArray getFilteredLivestock(String harvestable, AnimalType animalType, CropType diet, int minAge, int maxAge,
+    public List<LivestockDto> getFilteredLivestock(String harvestable, AnimalType animalType, CropType diet, int minAge, int maxAge,
                                           int minTagID, int maxTagID, int minWaterSpent, int minFoodSpent) {
         LivestockFilterModel model = new LivestockFilterModel(harvestable, animalType, diet, minAge, maxAge,
                 minTagID, maxTagID, minWaterSpent, minFoodSpent);
 
         ArrayList<JSONObject> livestock = dbHandler.getFilteredLivestock(model);
         JSONArray livestockArray = new JSONArray(livestock);
-        return livestockArray;
+
+        // TODO: convert from model to dto
+        return null;
+
+        //return livestockArray;
     }
 
-    public JSONArray getWaterAndFoodOfLivestock(int tagID) {
+    public List<LivestockDto> getWaterAndFoodOfLivestock(int tagID) {
         ArrayList<JSONObject> data = dbHandler.getWaterAndFoodSpentOfLivestock(tagID);
         JSONArray dataArray = new JSONArray(data);
-        return dataArray;
+
+        // TODO: convert from model to dto
+        return null;
+        //return dataArray;
     }
 
-    public boolean deleteLivestock(int tagID) {
-        return dbHandler.deleteLivestock(tagID);
+    public LivestockDto deleteLivestock(int tagID) {
+        // TODO: convert from model to dto
+        return null;
+        // return dbHandler.deleteLivestock(tagID);
     }
 
     /**
      * Insert a livestock given info
      */
-    public boolean insertLivestock(LivestockModel model) {
-        return dbHandler.insertLivestock(model);
+    public LivestockDto insertLivestock(LivestockModel model) {
+        // TODO: convert from model to dto
+        return null;
+        // return dbHandler.insertLivestock(model);
     }
 
     /**
      * Update a livestock with given info
      */
 
-    public boolean updateLivestock(Livestock_4_Model model, ActionType actionType) {
-        return dbHandler.updateLivestock(model, actionType);
+    public LivestockDto updateLivestock(Livestock_4_Model model, ActionType actionType) {
+        // TODO: convert from model to dto
+        return null;
+        // return dbHandler.updateLivestock(model, actionType);
     }
 
     /**

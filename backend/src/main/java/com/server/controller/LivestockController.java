@@ -1,5 +1,6 @@
 package com.server.controller;
 
+import dto.LivestockDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import bean.RestResult;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import com.server.service.ILivestockService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -36,17 +38,9 @@ public class LivestockController {
      * GET /api/livestock
      */
     @GetMapping(value = "/")
-    public RestResult<LivestockModel> getLivestock(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        JSONArray livestock = system.getLivestock(req);
-
-        PrintWriter out = res.getWriter();
-        res.setContentType("application/json");
-        res.setCharacterEncoding("UTF-8");
-        out.print(livestock);
-        out.flush();
-
-        // TODO: replace stub.
-        return RestResult.success(stubLivestockModel());
+    public RestResult<List<LivestockDto>> getLivestock(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        List<LivestockDto> livestock = system.getLivestock(req);
+        return RestResult.success(livestock);
     }
 
     /**
@@ -57,7 +51,7 @@ public class LivestockController {
      */
     @PostMapping(value = "/filteredValues")
     @ResponseBody
-    public RestResult<LivestockModel> getFilteredLivestock(@RequestBody Map<String, Object> map, HttpServletResponse res) throws IOException {
+    public RestResult<List<LivestockDto>> getFilteredLivestock(@RequestBody Map<String, Object> map, HttpServletResponse res) throws IOException {
         // Check for if null for these values.
         String harvestable = map.get("harvestable").toString().toUpperCase();
         AnimalType animalType = AnimalType.valueOf(map.get("animalType").toString().toUpperCase());
@@ -74,7 +68,7 @@ public class LivestockController {
         int minWaterSpent = (int) map.get("minWaterSpent");
         int minFoodSpent = (int) map.get("minFoodSpent");
 
-        JSONArray livestock = system.getFilteredLivestock(harvestable, animalType, diet, minAge, maxAge,
+        List<LivestockDto> livestock = system.getFilteredLivestock(harvestable, animalType, diet, minAge, maxAge,
                 minTagID, maxTagID, minWaterSpent, minFoodSpent);
         PrintWriter out = res.getWriter();
         res.setContentType("application/json");
@@ -83,7 +77,7 @@ public class LivestockController {
         out.flush();
 
         // TODO: replace stub.
-        return RestResult.success(stubLivestockModel());
+        return RestResult.success(livestock);
     }
 
     /**
@@ -92,12 +86,10 @@ public class LivestockController {
      * POST /api/livestock
      */
     @PostMapping(value = "/")
-    public RestResult<LivestockModel> insertLiveStock(@RequestBody Map<String, Object> map) {
-        LivestockModel model = LivestockModel.fromJSON(new JSONObject(map));
-
-        // TODO: replace stub.
-        return RestResult.success(stubLivestockModel());
-        // return system.insertLivestock(model);
+    public RestResult<LivestockDto> insertLiveStock(@RequestBody Map<String, Object> map) {
+        LivestockModel livestock = LivestockModel.fromJSON(new JSONObject(map));
+        LivestockDto livestockDto = system.insertLivestock(livestock);
+        return RestResult.success(livestockDto);
     }
 
     /**
@@ -107,13 +99,10 @@ public class LivestockController {
      */
     @DeleteMapping(value = "/")
     @ResponseBody
-    public RestResult<LivestockModel> deleteLivestock(@RequestBody Map<String, Object> map) {
+    public RestResult<LivestockDto> deleteLivestock(@RequestBody Map<String, Object> map) {
         int tagIDToDelete = (int) map.get("tagID");
-
-        // TODO: replace stub.
-        return RestResult.success(stubLivestockModel());
-
-        // return system.deleteLivestock(tagIDToDelete);
+        LivestockDto deletedLivestock = system.deleteLivestock(tagIDToDelete);
+        return RestResult.success(deletedLivestock);
     }
 
     /**
@@ -123,14 +112,11 @@ public class LivestockController {
      */
     @PatchMapping(value = "/")
     @ResponseBody
-    public RestResult<LivestockModel> updateLivestock(@RequestBody Map<String, Object> map) {
+    public RestResult<LivestockDto> updateLivestock(@RequestBody Map<String, Object> map) {
         Livestock_4_Model model = Livestock_4_Model.fromJSON(new JSONObject(map.get("livestock").toString()));
         ActionType actionType = ActionType.valueOf(map.get("actionType").toString().toUpperCase());
-
-        // TODO: replace stub.
-        return RestResult.success(stubLivestockModel());
-
-        // return system.updateLivestock(model, actionType);
+        LivestockDto updatedLivestock = system.updateLivestock(model, actionType);
+        return RestResult.success(updatedLivestock);
     }
 
 
@@ -159,11 +145,10 @@ public class LivestockController {
      * <p>
      * GET /api/livestock/foodWaterSpent
      */
-
     @GetMapping(value = "/foodWaterSpent")
     public RestResult<LivestockModel> getFoodWaterSpent(@RequestBody Map<String, Object> map, HttpServletResponse res) throws IOException {
         int tagID = Integer.parseInt(map.get("tagID").toString());
-        JSONArray data = system.getWaterAndFoodOfLivestock(tagID);
+        List<LivestockDto> data = system.getWaterAndFoodOfLivestock(tagID);
 
         PrintWriter out = res.getWriter();
         res.setContentType("application/json");

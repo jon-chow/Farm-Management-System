@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fms.mapper.LivestockMapper">
+    <select id="get-all-livestock" parameterType="int" resultType="com.az.model.User">
+        SELECT l4.tagID AS tagID,
+               l4.animalType AS animalType,
+               l4.age AS age,
+               l1.diet AS diet,
+               l4.weight AS weight,
+               l4.lastFed AS lastFed,
+               l3.harvestable AS harvestable,
+               l4.lastViolatedForHarvestedGoods AS lastViolatedForHarvestedGoods,
+        FROM LIVESTOCK_1 l1, LIVESTOCK_3 l3, LIVESTOCK_4 l4
+        WHERE l4.animalType = l3.animalType
+        AND   l4.animalType = l1.animalType
+        AND   l4.age = l3.age
+        AND   l4.weight = l1.weight
+        ORDER BY l4.tagId
+    </select>
+
+    <select id="get-all-users" resultType="model.models.livestock.LivestockModel">
+        SELECT id as id,
+               first_name as firstName,
+               last_name as lastName,
+               email,
+               password,
+               username
+        from people
+        order by id
+    </select>
+
+    <insert id="insert-user" parameterType="com.fms.mapper.LivestockMapper" useGeneratedKeys="true" keyProperty="id">
+        insert people (first_name,last_name,email,password,username) values (#{firstName},#{lastName},#{email},#{password},#{username})
+    </insert>
+
+    <update id="update-user" parameterType="com.fms.mapper.LivestockMapper">
+        UPDATE people
+        SET
+            first_name = #{firstName},
+            last_name = #{lastName},
+            email = #{email},
+            password = #{password},
+            username = #{username}
+        WHERE id = #{id};
+    </update>
+
+
+</mapper>
