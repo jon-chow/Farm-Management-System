@@ -872,7 +872,7 @@ public class DatabaseConnectionHandler {
 	}
 	public CropType getRandomCropType() {
 		Random random = new Random();
-		int crop = random.nextInt(0, 6);
+		int crop = random.nextInt( 6);
 
 
 		switch (crop) {
