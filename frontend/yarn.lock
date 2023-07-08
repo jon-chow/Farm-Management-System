@@ -2075,7 +2075,9 @@
   "version" "3.0.1"
 
 "@types/node@*":
-  "version" "18.15.3"
+  "integrity" "sha512-jfT7iTf/4kOQ9S7CHV9BIyRaQqHu67mOjsIQBC3BKZvzvUB6zLxEwJ6sBE3ozcvP8kF6Uk5PXN0Q+c0dfhGX0g=="
+  "resolved" "https://registry.npmjs.org/@types/node/-/node-20.4.0.tgz"
+  "version" "20.4.0"
 
 "@types/node@^16.7.13":
   "integrity" "sha512-ZOzvDRWp8dCVBmgnkIqYCArgdFOO9YzocZp8Ra25N/RStKiWvMOXHMz+GjSeVNe5TstaTmTWPucGJkDw0XXJWA=="
