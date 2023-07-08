@@ -2,10 +2,10 @@ package com.server.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.enums.AnimalType;
-import model.enums.CropStatus;
-import model.enums.CropType;
-import model.enums.CropVariant;
+import com.server.model.enums.AnimalType;
+import com.server.model.enums.CropStatus;
+import com.server.model.enums.CropType;
+import com.server.model.enums.CropVariant;
 
 import org.json.JSONArray;
 import org.springframework.web.bind.annotation.*;
@@ -44,10 +44,13 @@ public class MainController {
      */
     @RequestMapping(value = "/login", method = POST)
     public boolean login(@RequestBody Map<String, Object> map) {
-        Object username = map.get("username");
-        Object password = map.get("password");
-        // System.out.println("Username: " + username + " password: " + password);
-        return system.login(username.toString(), password.toString());
+
+        return true;
+
+//        Object username = map.get("username");
+//        Object password = map.get("password");
+//        // System.out.println("Username: " + username + " password: " + password);
+//        return system.login(username.toString(), password.toString());
     }
 
     /**
@@ -58,46 +61,7 @@ public class MainController {
         return system.logout();
     }
 
-    /* -------------------------------------------------------------------------- */
-    /*                               CROPS REQUESTS                               */
-    /* -------------------------------------------------------------------------- */
-    /**
-     * Handles Retrieving Crop Requests
-     */
-    @RequestMapping(value = "/crops", method = GET)
-    public void getCrops(HttpServletRequest req, HttpServletResponse res) throws IOException {
-      JSONArray crops = system.getCrops(req);
-      PrintWriter out = res.getWriter();
-      res.setContentType("application/json");
-      res.setCharacterEncoding("UTF-8");
-      out.print(crops);
-      out.flush();
-    }
 
-    /**
-     * Handles Filtering Crops By: cropType, cropVariant, cropStatus,
-     * minQuantity, maxQuantity
-     */
-    @RequestMapping(value = "/crops/filteredValues", method = POST)
-    @ResponseBody
-    @SuppressWarnings("unchecked")
-    public void getFilteredCrops(@RequestBody Map<String, Object> map, HttpServletResponse res) throws IOException {
-      // Check for if null for these values.
-      CropType cropType = CropType.valueOf(map.get("cropType").toString().toUpperCase());
-      CropVariant cropVariant = CropVariant.valueOf(map.get("cropVariant").toString().toUpperCase());
-      CropStatus cropStatus = CropStatus.valueOf(map.get("cropStatus").toString().toUpperCase());
-
-      Map<String, Object> quantity = (Map<String, Object>) map.get("quantity");
-      int minQuantity = (int) quantity.get("min");
-      int maxQuantity = (int) quantity.get("max");
-
-      JSONArray crops = system.getFilteredCrops(cropType, cropVariant, cropStatus, minQuantity, maxQuantity);
-      PrintWriter out = res.getWriter();
-      res.setContentType("application/json");
-      res.setCharacterEncoding("UTF-8");
-      out.print(crops);
-      out.flush();
-    }
 
 
 

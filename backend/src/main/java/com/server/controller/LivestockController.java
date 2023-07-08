@@ -1,19 +1,19 @@
 package com.server.controller;
 
-import dto.LivestockDto;
+import com.server.dto.LivestockDto;
 import org.springframework.beans.factory.annotation.Autowired;
-import bean.RestResult;
+import com.server.bean.RestResult;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.enums.ActionType;
-import model.enums.AnimalType;
-import model.enums.CropType;
-import model.models.livestock.LivestockModel;
-import model.models.livestock.Livestock_4_Model;
+import com.server.model.enums.ActionType;
+import com.server.model.enums.AnimalType;
+import com.server.model.enums.CropType;
+import com.server.model.models.livestock.LivestockModel;
+import com.server.model.models.livestock.Livestock_4_Model;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
-import com.server.service.ILivestockService;
+import com.server.service.interfaces.ILivestockService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,8 +37,9 @@ public class LivestockController {
      * Handles Retrieving Livestock Requests
      * GET /api/livestock
      */
-    @GetMapping(value = "/")
+    @GetMapping(value = "")
     public RestResult<List<LivestockDto>> getLivestock(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        System.out.println("Getting Livestock!");
         List<LivestockDto> livestock = system.getLivestock(req);
         return RestResult.success(livestock);
     }
@@ -85,7 +86,7 @@ public class LivestockController {
      * <p>
      * POST /api/livestock
      */
-    @PostMapping(value = "/")
+    @PostMapping(value = "")
     public RestResult<LivestockDto> insertLiveStock(@RequestBody Map<String, Object> map) {
         LivestockModel livestock = LivestockModel.fromJSON(new JSONObject(map));
         LivestockDto livestockDto = system.insertLivestock(livestock);
@@ -97,7 +98,7 @@ public class LivestockController {
      * <p>
      * DELETE /api/livestock
      */
-    @DeleteMapping(value = "/")
+    @DeleteMapping(value = "")
     @ResponseBody
     public RestResult<LivestockDto> deleteLivestock(@RequestBody Map<String, Object> map) {
         int tagIDToDelete = (int) map.get("tagID");
@@ -110,7 +111,7 @@ public class LivestockController {
      * <p>
      * PATCH /api/livestock
      */
-    @PatchMapping(value = "/")
+    @PatchMapping(value = "")
     @ResponseBody
     public RestResult<LivestockDto> updateLivestock(@RequestBody Map<String, Object> map) {
         Livestock_4_Model model = Livestock_4_Model.fromJSON(new JSONObject(map.get("livestock").toString()));

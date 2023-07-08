@@ -1,19 +1,15 @@
 package com.server.service;
 
 import jakarta.servlet.http.HttpServletRequest;
-import model.enums.ActionType;
-import model.enums.AnimalType;
-import model.enums.CropStatus;
-import model.enums.CropType;
-import model.enums.CropVariant;
-import model.filters.CropsFilterModel;
-import model.filters.LivestockFilterModel;
-import model.models.livestock.LivestockModel;
+import com.server.model.enums.AnimalType;
+import com.server.model.enums.CropStatus;
+import com.server.model.enums.CropType;
+import com.server.model.enums.CropVariant;
+import com.server.model.filters.CropsFilterModel;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import database.DatabaseConnectionHandler;
-import model.models.livestock.Livestock_4_Model;
+import com.server.database.DatabaseConnectionHandler;
 
 import java.util.ArrayList;
 
