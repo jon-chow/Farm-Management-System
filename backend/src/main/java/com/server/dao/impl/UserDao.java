@@ -4,6 +4,8 @@ import com.server.dao.BaseDao;
 import com.server.dao.interfaces.IUserDao;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 @Component
 public class UserDao extends BaseDao implements IUserDao {
 
@@ -15,6 +17,7 @@ public class UserDao extends BaseDao implements IUserDao {
 
     @Override
     public int getUserId(String username, String password) {
-        return -1;
+        Map<String, String> map = Map.of("username", username, "password", password);
+        return getSqlSession().selectOne("com.fms.mapper.UserMapper.get-user-id", map);
     }
  }

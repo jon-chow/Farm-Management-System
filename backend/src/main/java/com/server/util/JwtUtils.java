@@ -1,15 +1,20 @@
 package com.server.util;
 
 import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
 
 import java.util.Date;
 
 public class JwtUtils {
-    private static final String SECRET_KEY = "4BC52ADD35887A9873E7C2E42145C";
+
+    // Generate a secure key for HS256
+    static byte[] keyBytes = Keys.secretKeyFor(SignatureAlgorithm.HS256).getEncoded();
+
 
     /**
      * Generates a JWT token with SECRET_KEY
      * @param subject
+     *      to generate the token with.
      * @return
      *      a JWT token
      */
@@ -20,13 +25,14 @@ public class JwtUtils {
                 .setSubject(subject)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + expirationTimeMillis))
-                .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
+                .signWith(SignatureAlgorithm.HS256, keyBytes)
                 .compact();
     }
 
     /**
      * Validates a token
      * @param token
+     *      token contained within API request body
      * @return
      *      true - if the token is valid.
      *      false - if the token is invalid.
@@ -34,7 +40,7 @@ public class JwtUtils {
     public static boolean validateToken(String token) {
         try {
             Jws<Claims> claims = Jwts.parserBuilder()
-                    .setSigningKey(SECRET_KEY)
+                    .setSigningKey(keyBytes)
                     .build()
                     .parseClaimsJws(token);
 

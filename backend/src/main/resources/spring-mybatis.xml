@@ -56,11 +56,11 @@
         <constructor-arg ref="hikariConfig" />
     </bean>
 
-<!--    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
-<!--        <property name="dataSource" ref="dataSource" />-->
-<!--    </bean>-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
 
-<!--    <tx:annotation-driven transaction-manager="transactionManager" />-->
+   <tx:annotation-driven transaction-manager="transactionManager" />
 
   <!--  <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
         <property name="dataSourceClassName" value="com.mysql.jdbc.jdbc2.optional.MysqlDataSource" />
@@ -106,5 +106,6 @@
         <property name="basePackage" value="com.server.dao" />
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
     </bean>
+
 
 </beans>

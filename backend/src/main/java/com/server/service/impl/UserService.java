@@ -18,7 +18,7 @@ public class UserService extends BaseService implements IUserService {
     @Override
     public String login(String username, String password) {
         int userId = userDao.getUserId(username, password);
-        if (userId == -1) {
+        if (userId != -1) {
             return JwtUtils.generateToken("" + 1);
         }
         return null;

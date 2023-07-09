@@ -18,6 +18,5 @@
 
 
     <!-- if you want to only load a single spring configuration file, you could import all other files here. -->
-<!--    <import resource="spring-servlet.xml" />-->
     <import resource="spring-mybatis.xml" />
 </beans>
