@@ -12,7 +12,7 @@
         https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- Auto scan components -->
-    <context:component-scan base-package="com.az.controller,com.az.rest.controller" />
+    <context:component-scan base-package="com.server" />
 
 <!--    activate applied annotations in already registered beans in application context.-->
  <!--   <context:annotation-config/>-->
