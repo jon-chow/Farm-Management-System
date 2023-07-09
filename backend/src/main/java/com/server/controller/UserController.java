@@ -25,6 +25,7 @@ public class UserController {
      * POST /api/user/login
      */
     @PostMapping(value = "/login")
+    //@RequestMapping(value = "/login")
     public RestResult<String> login(@RequestBody Map<String, Object> body) {
         String username = body.get("username").toString();
         String password = body.get("password").toString();
