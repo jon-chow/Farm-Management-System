@@ -4,6 +4,6 @@
   "private": true,
   "scripts": {
     "compile": "mvn -q clean install",
-    "start": "npm run compile && java -jar target/fms-0.1.0.jar"
+    "start": "mvn -q spring-boot:run"
   }
 }
