@@ -20,7 +20,7 @@ import java.util.Map;
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
+// @CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping("/api")
 public class MainController {
 
