@@ -11,5 +11,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.students.cs.ubc.ca/CPSC304-2022W-T2/project_e4i4a_j8c9p_u6y8q.git"
+  },
+  "dependencies": {
+    "http-proxy-middleware": "^2.0.6"
   }
 }

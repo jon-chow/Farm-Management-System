@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useState } from 'react';
 
-import BackgroundImg from '@assets/backgrounds/background.png';
+import BackgroundImg from '@/assets/backgrounds/background.png';
 
 import styles from './backgroundContext.module.scss';
 
@@ -11,7 +11,7 @@ import styles from './backgroundContext.module.scss';
 /**
  * Background context
  */
-const BackgroundContext = createContext<{background: String, setBackground: any}>({
+const BackgroundContext = createContext<{background: string, setBackground: any}>({
   background: BackgroundImg,
   setBackground: () => {},
 });

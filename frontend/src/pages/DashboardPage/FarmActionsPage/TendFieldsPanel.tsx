@@ -4,16 +4,16 @@ import { FaFilter } from 'react-icons/fa';
 import {
   retrieveCrops,
   retrieveFilteredCrops,
-} from '@controllers/farmerActionsController';
+} from '@/controllers/farmerActionsController';
 
-import { CropType, CropVariant, CropStatus } from '@utils/enums';
+import { CropType, CropVariant, CropStatus } from '@/utils/enums';
 
-import CanolaProfile from '@assets/crops/canola.png';
-import WheatProfile from '@assets/crops/wheat.png';
-import CornProfile from '@assets/crops/corn.png';
-import PotatoProfile from '@assets/crops/potato.png';
-import MustardProfile from '@assets/crops/mustard.png';
-import CoconutProfile from '@assets/crops/coconut.png';
+import CanolaProfile from '@/assets/crops/canola.png';
+import WheatProfile from '@/assets/crops/wheat.png';
+import CornProfile from '@/assets/crops/corn.png';
+import PotatoProfile from '@/assets/crops/potato.png';
+import MustardProfile from '@/assets/crops/mustard.png';
+import CoconutProfile from '@/assets/crops/coconut.png';
 
 import styles from './TendFieldsPanel.module.scss';
 

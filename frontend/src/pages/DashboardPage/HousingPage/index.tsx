@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
-import NavBar from '@components/NavBar';
+import NavBar from '@/components/NavBar';
 
 import {
   DASHBOARD_PATHNAME,
   HOUSING_PATHNAME,
-} from '@config/routes';
+} from '@/config/routes';
 
 import ViewHousingPanel from './ViewHousingPanel';
 import ManageHousingPanel from './ManageHousingPanel';

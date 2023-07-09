@@ -1,11 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
 import { GiWheat } from 'react-icons/gi';
 
-import { login } from '@controllers/loginController';
+import { login } from '@/controllers/loginController';
 
-import BackgroundContext from '@contexts/backgroundContext';
+import BackgroundContext from '@/contexts/backgroundContext';
 
-import BackgroundImg from '@assets/backgrounds/background2.png';
+import BackgroundImg from '@/assets/backgrounds/background2.png';
 
 import styles from './index.module.scss';
 
