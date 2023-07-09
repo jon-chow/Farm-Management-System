@@ -1,11 +1,11 @@
 import { createContext, ReactNode, useState, useEffect } from 'react';
 
-import * as ROUTES from '@config/routes';
+import * as ROUTES from '@/config/routes';
 
 /**
  * User context
  */
-const UserContext = createContext<{user: String, setUser: any}>({
+const UserContext = createContext<{user: string, setUser: any}>({
   user: '',
   setUser: () => {},
 });

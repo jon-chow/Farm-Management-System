@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 
-import App from '@src/App';
+import App from './App';
 
-import { BackgroundProvider } from "@contexts/backgroundContext";
-import { UserProvider } from "@contexts/userContext";
-import { ModalProvider } from '@contexts/modalContext';
+import { BackgroundProvider } from "./contexts/backgroundContext";
+import { UserProvider } from "./contexts/userContext";
+import { ModalProvider } from './contexts/modalContext';
 
-import '@src/index.css';
+import './index.css';
 
-import reportWebVitals from '@src/reportWebVitals';
+import reportWebVitals from './reportWebVitals';
 
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { ActionTypes, AnimalType } from "@utils/enums";
+import { ActionTypes, AnimalType } from "@/utils/enums";
 
 const PATH = "/api";
 const CROP_PATH = `${PATH}/crops`;

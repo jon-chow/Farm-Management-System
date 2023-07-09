@@ -3,7 +3,7 @@ import { useState } from "react";
 import {
   getFarmers,
   getGOATFarmers,
-} from "@controllers/companyInfoControllers";
+} from "@/controllers/companyInfoControllers";
 
 import styles from "./ViewCompanyInfoPanel.module.scss";
 

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 
-import NavBar from "@components/NavBar";
+import NavBar from "@/components/NavBar";
 
-import { DASHBOARD_PATHNAME, USER_INFO_PATHNAME } from "@config/routes";
+import { DASHBOARD_PATHNAME, USER_INFO_PATHNAME } from "@/config/routes";
 
 import ViewProfilePanel from './ViewProfilePanel';
 import ViewInventoryPanel from "./ViewUserInventoryPanel";

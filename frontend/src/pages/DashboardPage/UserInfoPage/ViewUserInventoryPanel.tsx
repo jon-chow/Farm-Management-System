@@ -4,7 +4,7 @@ import {
   getDataValues,
   getTableColumns,
   getUserTables,
-} from "@controllers/userInfoControllers";
+} from "@/controllers/userInfoControllers";
 
 import styles from "./ViewUserInventoryPanel.module.scss";
 

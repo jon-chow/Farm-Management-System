@@ -1,15 +1,15 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
-import LoginPage from '@pages/LoginPage';
-import MainPage from '@pages/DashboardPage';
-import ErrorPage from '@pages/ErrorPage';
+import LoginPage from './pages/LoginPage';
+import MainPage from './pages/DashboardPage';
+import ErrorPage from './pages/ErrorPage';
 
-import FarmerActions from "@pages/DashboardPage/FarmActionsPage";
-import UserInfo from "@pages/DashboardPage/UserInfoPage";
-import CompanyFunFacts from "@pages/DashboardPage/CompanyFunFactsPage";
-import Housing from "@pages/DashboardPage/HousingPage";
+import FarmerActions from "./pages/DashboardPage/FarmActionsPage";
+import UserInfo from "./pages/DashboardPage/UserInfoPage";
+import CompanyFunFacts from "./pages/DashboardPage/CompanyFunFactsPage";
+import Housing from "./pages/DashboardPage/HousingPage";
 
-import * as ROUTES from "@config/routes";
+import * as ROUTES from "./config/routes";
 
 
 /* -------------------------------------------------------------------------- */

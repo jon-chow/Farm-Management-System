@@ -8,11 +8,10 @@ The main aspects of the system are separated between staff, livestock, agricultu
 Furthermore, important distributors will also have access to the system in order to purchase products to distribute to other manufacturers, which implies a needed access to the database in order to view available products.
 
 ## Deliverables
-All deliverables can be found [here.](./_deliverables/)
+All deliverables can be found [here.](./_docs/deliverables/)
 
 Additional files:
-- [README.txt](./_deliverables/README.txt)
-- [Task Breakdown](./_deliverables/TIMELINE.md)
+- [Task Breakdown](./_docs/deliverables/TIMELINE.md)
 
 ## Dependencies
 - Node.js + NPM - [https://nodejs.org/en/download/](https://nodejs.org/en/download/)

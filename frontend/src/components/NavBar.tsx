@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { GiFarmTractor } from 'react-icons/gi';
 
-import UserContext from '@contexts/userContext';
+import UserContext from '@/contexts/userContext';
 
 import styles from './NavBar.module.scss';
 

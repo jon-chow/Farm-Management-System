@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 
-import NavBar from '@components/NavBar';
+import NavBar from '@/components/NavBar';
 
 import {
   DASHBOARD_PATHNAME,
   FARMER_ACTIONS_PATHNAME,
-} from '@config/routes';
+} from '@/config/routes';
 
 import TendFieldsPanel from './TendFieldsPanel';
 import NurtureAnimalsPanel from './NurtureAnimalsPanel';
