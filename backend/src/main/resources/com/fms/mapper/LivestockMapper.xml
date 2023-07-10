@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="classpath:com.fms.mapper.LivestockMapper">
+<mapper namespace="com.fms.mapper.LivestockMapper">
     <select id="get-all-livestock" parameterType="int" resultType="com.server.model.models.livestock.LivestockModel">
         SELECT l4.tagID AS tagID,
                l4.animalType AS animalType,

@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="classpath:com.fms.mapper.UserMapper">
+<mapper namespace="com.fms.mapper.UserMapper">
     <select id="get-user-id" parameterType="java.util.Map" resultType="int">
         SELECT user_id
         FROM users
