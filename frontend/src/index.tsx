@@ -1,11 +1,13 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom/client';
 
 import App from './App';
 
-import { BackgroundProvider } from "./contexts/backgroundContext";
-import { UserProvider } from "./contexts/userContext";
+import { BackgroundProvider } from './contexts/backgroundContext';
 import { ModalProvider } from './contexts/modalContext';
+
+import { store } from './api/store';
 
 import './index.css';
 
@@ -14,13 +16,13 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <UserProvider>
+    <Provider store={store}>
       <ModalProvider>
         <BackgroundProvider>
           <App />
         </BackgroundProvider>
       </ModalProvider>
-    </UserProvider>
+    </Provider>
   </React.StrictMode>
 );
 

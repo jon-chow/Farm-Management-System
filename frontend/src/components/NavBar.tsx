@@ -1,8 +1,7 @@
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { GiFarmTractor } from 'react-icons/gi';
 
-import UserContext from '@/contexts/userContext';
+import useAuth from '@/hooks/useAuth';
 
 import styles from './NavBar.module.scss';
 
@@ -10,17 +9,16 @@ import styles from './NavBar.module.scss';
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
-function NavBar() {
-  const userContext = useContext(UserContext);
+const NavBar = (): React.ReactElement => {
+  const currentUser: AuthData = useAuth();
 
-  const handleLogout = () => {
-    try {
-      sessionStorage.removeItem('user-fms');
-      window.alert("Logged out successfully!");
-      userContext.setUser('');
-    } catch (error) {
-      console.error(error);
-    };
+  /**
+   * Handles the logout button click event.
+   * TODO: Implement logout functionality.
+   */
+  const handleLogout = (e: React.MouseEvent) => {
+    e.preventDefault();
+    console.log("Logout button clicked");
   };
 
   return (
@@ -35,12 +33,12 @@ function NavBar() {
         </Link>
       </button>
 
-      <h1>Totalitarian Farming System&trade;</h1>
+      <h1>Farm Management System&trade;</h1>
 
       <button
         className={styles.NavButton}
         type="button"
-        onClick={handleLogout}
+        onClick={(e) => handleLogout(e)}
       >
         Log out
       </button>
