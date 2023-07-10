@@ -6,7 +6,7 @@ import NavBar from '@/components/NavBar';
 import {
   DASHBOARD_PATHNAME,
   FARMER_ACTIONS_PATHNAME,
-} from '@/config/routes';
+} from '@/configs/routes';
 
 import TendFieldsPanel from './TendFieldsPanel';
 import NurtureAnimalsPanel from './NurtureAnimalsPanel';

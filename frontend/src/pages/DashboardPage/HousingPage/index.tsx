@@ -6,7 +6,7 @@ import NavBar from '@/components/NavBar';
 import {
   DASHBOARD_PATHNAME,
   HOUSING_PATHNAME,
-} from '@/config/routes';
+} from '@/configs/routes';
 
 import ViewHousingPanel from './ViewHousingPanel';
 import ManageHousingPanel from './ManageHousingPanel';

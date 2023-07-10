@@ -3,7 +3,7 @@ import { Navigate, useLocation } from "react-router-dom";
 
 import NavBar from "@/components/NavBar";
 
-import { DASHBOARD_PATHNAME, USER_INFO_PATHNAME } from "@/config/routes";
+import { DASHBOARD_PATHNAME, USER_INFO_PATHNAME } from "@/configs/routes";
 
 import ViewProfilePanel from './ViewProfilePanel';
 import ViewInventoryPanel from "./ViewUserInventoryPanel";

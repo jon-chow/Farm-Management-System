@@ -1,16 +1,16 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import RequireAuth from "./features/auth/RequireAuth";
 
 import LoginPage from './pages/LoginPage';
-import ErrorPage from './pages/ErrorPage';
+// import ErrorPage from './pages/ErrorPage';
 import DashboardPage from './pages/DashboardPage';
 import FarmerActionsPage from "./pages/DashboardPage/FarmActionsPage";
 import UserInfoPage from "./pages/DashboardPage/UserInfoPage";
 import CompanyFunFactsPage from "./pages/DashboardPage/CompanyFunFactsPage";
 import HousingPage from "./pages/DashboardPage/HousingPage";
 
-import * as ROUTES from "./config/routes";
+import * as ROUTES from "./configs/routes";
 
 
 /* -------------------------------------------------------------------------- */
@@ -31,11 +31,14 @@ const App = (): React.ReactElement => {
             <Route path={ROUTES.USER_INFO_PATHNAME} element={<UserInfoPage />} />
             <Route path={ROUTES.COMPANY_FUN_FACTS_PATHNAME} element={<CompanyFunFactsPage />} />
             <Route path={ROUTES.HOUSING_PATHNAME}element={<HousingPage />} />
+            <Route path="" element={<Navigate to={ROUTES.DASHBOARD_PATHNAME} />} />
+            <Route path="*" element={<Navigate to={ROUTES.DASHBOARD_PATHNAME} />} />
           </Route>
 
           {/* Public Routes */}
+          <Route path="/" element={<Navigate to={ROUTES.LOGIN_PATHNAME} />} />
           <Route path={ROUTES.LOGIN_PATHNAME} element={<LoginPage />} />
-          <Route path="*" element={<ErrorPage />} />
+          <Route path="*" element={<Navigate to={ROUTES.LOGIN_PATHNAME} />} />
         </Routes>
       </Router>
     </div>

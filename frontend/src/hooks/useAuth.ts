@@ -19,6 +19,7 @@ const useAuth = (): AuthData => {
 		return { username, roles };
 	}
 
+	// TODO: change roles to empty array after
 	return { username: "", roles: ["admin"] };
 };
 

@@ -1,7 +1,7 @@
 import { To } from 'react-router-dom';
 import { GiBarn, GiFarmer, GiPerson, GiBroccoli } from 'react-icons/gi';
 
-import * as ROUTES from '@/config/routes';
+import * as ROUTES from '@/configs/routes';
 
 import NavBar from '@/components/NavBar';
 import { Link } from 'react-router-dom';
