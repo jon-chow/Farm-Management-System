@@ -14,7 +14,7 @@ public class RestResult<T> {
 
         private final int value;
 
-        private Code (int s) {
+        Code (int s) {
             this.value = s;
         }
 
@@ -57,6 +57,15 @@ public class RestResult<T> {
         restResult.setStatus(ERROR);
         restResult.setMessage(msg);
         restResult.setResultCode(Code.ERROR);
+        return restResult;
+    }
+
+    public static <T> RestResult<T> fail(final T data, final String msg, Code apiCode) {
+        final RestResult restResult = new <T>RestResult();
+        restResult.setData(data);
+        restResult.setStatus(ERROR);
+        restResult.setMessage(msg);
+        restResult.setResultCode(apiCode);
         return restResult;
     }
 }

@@ -3,9 +3,6 @@ package com.server.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import com.server.model.enums.AnimalType;
-import com.server.model.enums.CropStatus;
-import com.server.model.enums.CropType;
-import com.server.model.enums.CropVariant;
 
 import org.json.JSONArray;
 import org.springframework.web.bind.annotation.*;
@@ -37,30 +34,6 @@ public class MainController {
     public String main() {
         return "Farm Management System is running!";
     }
-
-    /**
-     * Handles Login Requests
-     * Inspired by: https://stackoverflow.com/questions/29313687/trying-to-use-spring-boot-rest-to-read-json-string-from-post
-     */
-    @RequestMapping(value = "/login", method = POST)
-    public boolean login(@RequestBody Map<String, Object> map) {
-
-        return true;
-
-//        Object username = map.get("username");
-//        Object password = map.get("password");
-//        // System.out.println("Username: " + username + " password: " + password);
-//        return system.login(username.toString(), password.toString());
-    }
-
-    /**
-     * Handles Logout Requests
-     */
-    @RequestMapping(value = "/logout", method = GET)
-    public boolean logout() {
-        return system.logout();
-    }
-
 
 
 

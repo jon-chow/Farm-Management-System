@@ -1,19 +1,12 @@
 package com.server.dao;
 
-import org.mybatis.spring.SqlSessionTemplate;
-import org.mybatis.spring.support.SqlSessionDaoSupport;
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.Resource;
-
-
-public class BaseDao extends SqlSessionDaoSupport {
-    /*    @Resource
-    public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory){
-      super.setSqlSessionFactory(sqlSessionFactory);
-    }*/
-
-    @Resource
-    public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
-        super.setSqlSessionTemplate(sqlSessionTemplate);
+public class BaseDao {
+    @Autowired
+    private SqlSession sqlSessionTemplate;
+    protected SqlSession getSqlSession() {
+        return sqlSessionTemplate;
     }
 }
