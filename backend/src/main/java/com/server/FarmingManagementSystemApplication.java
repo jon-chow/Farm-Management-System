@@ -1,12 +1,9 @@
 package com.server;
 
-import com.server.controller.LivestockController;
-import com.server.controller.UserController;
 import com.server.config.MyBatisConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.server.controller.MainController;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
