@@ -32,6 +32,10 @@
         from people
         order by id
     </select>
+    <insert id="insert-livestock" parameterType="com.server.model.models.livestock.LivestockModel">
+        INSERT INTO livestock (tagID, animalType, age, diet, weight, lastFed, harvestable, lastViolatedForHarvestedGoods)
+        VALUES (#{tagID}, #{animalType}, #{age}, #{diet}, #{weight}, #{lastFed}, #{harvestable}, #{lastViolatedForHarvestedGoods})
+    </insert>
 
    <!-- <insert id="insert-user" parameterType="int" useGeneratedKeys="true" keyProperty="id">
         insert people (first_name,last_name,email,password,username) values (#{firstName},#{lastName},#{email},#{password},#{username})

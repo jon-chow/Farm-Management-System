@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ILivestockDao {
     public List<LivestockModel> getLivestock();
+
+    public void insertLivestock(LivestockModel livestockModel);
 }
