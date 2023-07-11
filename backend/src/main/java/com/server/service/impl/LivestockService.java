@@ -3,17 +3,18 @@ package com.server.service.impl;
 import com.server.dao.interfaces.ILivestockDao;
 import com.server.database.DatabaseConnectionHandler;
 import com.server.dto.LivestockDto;
-import com.server.service.BaseService;
-import com.server.service.interfaces.ILivestockService;
-import jakarta.servlet.http.HttpServletRequest;
 import com.server.model.enums.ActionType;
 import com.server.model.enums.AnimalType;
 import com.server.model.enums.CropType;
 import com.server.model.filters.LivestockFilterModel;
 import com.server.model.models.livestock.LivestockModel;
 import com.server.model.models.livestock.Livestock_4_Model;
+import com.server.service.BaseService;
+import com.server.service.interfaces.ILivestockService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +32,7 @@ public class LivestockService extends BaseService implements ILivestockService {
     // @Autowired
     PlatformTransactionManager transactionManager;
 
-//    @Autowired
+    @Autowired
     private ILivestockDao livestockDao;
 
     /**
@@ -89,6 +90,7 @@ public class LivestockService extends BaseService implements ILivestockService {
      */
     public LivestockDto insertLivestock(LivestockModel model) {
         // TODO: convert from model to dto
+        livestockDao.insertLivestock(model);
         return null;
         // return dbHandler.insertLivestock(model);
     }
