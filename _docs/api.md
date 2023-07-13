@@ -113,6 +113,7 @@ the Authorization header as a Bearer token.
 {
   "animal_type": "COW",
   "age": 3,
+  "diet": "WHEAT",
   "weight": 500.0,
   "last_fed": "2023-07-09",
   "harvestable": true,
@@ -129,6 +130,7 @@ the Authorization header as a Bearer token.
   "tag_id": 1,
   "animal_type": "COW",
   "age": 3,
+  "diet": "WHEAT",
   "weight": 500.0,
   "last_fed": "2023-07-09",
   "harvestable": true,
