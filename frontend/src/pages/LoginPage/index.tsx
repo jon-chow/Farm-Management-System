@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
 import { GiWheat } from 'react-icons/gi';
 
-import { login } from '@/controllers/loginController';
+import { useLoginMutation } from '@/features/auth/auth.api.slice';
 
-import BackgroundContext from '@/contexts/backgroundContext';
+import BackgroundContext from '@/contexts/BackgroundContext';
 
 import BackgroundImg from '@/assets/backgrounds/background2.png';
 
@@ -13,29 +13,38 @@ import styles from './index.module.scss';
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
 /* -------------------------------------------------------------------------- */
-const LoginPage = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+/**
+ * Renders the login page.
+ * @returns {React.ReactElement} The login page.
+ */
+const LoginPage = (): React.ReactElement => {
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+
   const { setBackground } = useContext(BackgroundContext);
 
-  /**
-   * Handles the login process
-   */
-  const handleLogin = async () => {
-    try {
-      const response = await login(username, password);
+  const [login] = useLoginMutation();
 
-      if (response)
-        sessionStorage.setItem('user-fms', username);
-      
+  /**
+   * Handles the login process.
+   * TODO: Complete when backend is ready.
+   * @async
+   */
+  async function handleLogin(): Promise<void> {
+    try {
+      const response = await login({ username, password });
+
       window.alert("Logged in successfully!");
       document.location.href = '/dashboard';
     } catch (error) {
       window.alert(`Login failed: ${(error as Error).message}`);
     }
-  };
+  }
 
-  // Redirects to dashboard if user is already logged in
+  /**
+   * Redirects to dashboard if user is already logged in.
+   * TODO: Change this when backend is ready.
+   */
   useEffect(() => {
     setBackground(BackgroundImg);
     if (sessionStorage.getItem('user-fms'))
@@ -44,7 +53,7 @@ const LoginPage = () => {
 
   return (
     <div className={styles.LoginPage}>
-      <h1>Totalitarian Farming System&trade; Login</h1>
+      <h1>Farm Management System&trade; Login</h1>
       <h3>The best way to control and manage your farm!</h3>
       <GiWheat className={styles.WheatIcon} />
 
@@ -73,7 +82,7 @@ const LoginPage = () => {
 
         <button
           type="button"
-          onClick={handleLogin}
+          onClick={handleLogin as () => void}
         >
           Login
         </button>

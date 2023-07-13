@@ -8,7 +8,7 @@ import {
 } from "react-icons/gi";
 import { FaFilter } from "react-icons/fa";
 
-import ModalContext from "@/contexts/modalContext";
+import ModalContext from "@/contexts/ModalContext";
 
 import {
   deleteLivestock,

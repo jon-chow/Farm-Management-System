@@ -4,8 +4,8 @@ import ReactDOM from 'react-dom/client';
 
 import App from './App';
 
-import { BackgroundProvider } from './contexts/backgroundContext';
-import { ModalProvider } from './contexts/modalContext';
+import { BackgroundProvider } from './contexts/BackgroundContext';
+import { ModalProvider } from './contexts/ModalContext';
 
 import { store } from './api/store';
 

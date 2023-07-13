@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { setupListeners } from "@reduxjs/toolkit/query";
 
-import { apiSlice } from "./apiSlice";
-import authReducer from "@/features/auth/authSlice";
+import { apiSlice } from "./api.slice";
+import authReducer from "@/features/auth/auth.slice";
 
 
 /**

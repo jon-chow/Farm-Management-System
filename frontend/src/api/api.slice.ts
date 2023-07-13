@@ -7,23 +7,23 @@ import {
 } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 import { ComponentState } from "react";
 
-import { setCredentials } from "@/features/auth/authSlice";
+import { setCredentials } from "@/features/auth/auth.slice";
 
 
 /**
  * Base query with credentials and authorization header.
  */
 const baseQuery = fetchBaseQuery({
-	baseUrl: "http://127.0.0.1:8080/api",
+	baseUrl: "http://127.0.0.1:8080/api/v1",
 	credentials: "include",
-	prepareHeaders: (headers, { getState }: ComponentState) => {
-		const token = getState().auth.token;
+	// prepareHeaders: (headers, { getState }: ComponentState) => {
+	// 	const token = getState().auth.token;
 
-		// Add authorization header if token is present.
-		if (token) headers.set("authorization", `Bearer ${token}`);
+	// 	// Add authorization header if token is present.
+	// 	if (token) headers.set("authorization", `Bearer ${token}`);
 
-		return headers;
-	},
+	// 	return headers;
+	// },
 });
 
 /**
@@ -56,7 +56,6 @@ const baseQueryWithReauth = async (
 	// 	}
 	// }
 
-	// return result;
 	return result;
 };
 
