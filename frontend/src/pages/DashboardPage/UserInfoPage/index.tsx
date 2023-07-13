@@ -3,7 +3,7 @@ import { Navigate, useLocation } from "react-router-dom";
 
 import NavBar from "@/components/NavBar";
 
-import { DASHBOARD_PATHNAME, USER_INFO_PATHNAME } from "@/configs/routes";
+import { ROUTES } from "@/configs/routes";
 
 import ViewProfilePanel from './ViewProfilePanel';
 import ViewInventoryPanel from "./ViewUserInventoryPanel";
@@ -20,7 +20,7 @@ const UserInfo = () => {
   useEffect(() => {
     const { pathname, hash } = location;
 
-    if (pathname === USER_INFO_PATHNAME) {
+    if (pathname === ROUTES.USER_INFO) {
       switch (hash) {
         case "#profile":
           setPanel(<ViewProfilePanel />);
@@ -39,7 +39,7 @@ const UserInfo = () => {
     <div>
       <NavBar />
 
-      {location.hash ? panel : <Navigate to={DASHBOARD_PATHNAME} />}
+      {location.hash ? panel : <Navigate to={ROUTES.DASHBOARD} />}
     </div>
   );
 };

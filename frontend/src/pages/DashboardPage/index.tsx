@@ -1,7 +1,7 @@
 import { To } from 'react-router-dom';
 import { GiBarn, GiFarmer, GiPerson, GiBroccoli } from 'react-icons/gi';
 
-import * as ROUTES from '@/configs/routes';
+import { ROUTES } from '@/configs/routes';
 
 import NavBar from '@/components/NavBar';
 import { Link } from 'react-router-dom';
@@ -21,21 +21,21 @@ interface Button {
 // Farmer Actions Buttons
 const FARMER_ACTIONS_BUTTONS : Button[] = [
   {
-    link: `${ROUTES.FARMER_ACTIONS_PATHNAME}#tend-fields`,
+    link: `${ROUTES.FARMER_ACTIONS}#tend-fields`,
     text: "Tend Fields",
     disabled: true
   },
   {
-    link: `${ROUTES.FARMER_ACTIONS_PATHNAME}#nurture-animals`,
+    link: `${ROUTES.FARMER_ACTIONS}#nurture-animals`,
     text: "Nurture Animals"
   },
   {
-    link: `${ROUTES.FARMER_ACTIONS_PATHNAME}#sell-products`,
+    link: `${ROUTES.FARMER_ACTIONS}#sell-products`,
     text: "Sell Products",
     disabled: true
   },
   {
-    link: `${ROUTES.FARMER_ACTIONS_PATHNAME}#manage-facilities`,
+    link: `${ROUTES.FARMER_ACTIONS}#manage-facilities`,
     text: "Manage Facilities",
     disabled: true
   }
@@ -44,12 +44,12 @@ const FARMER_ACTIONS_BUTTONS : Button[] = [
 // User Info Buttons
 const USER_INFO_BUTTONS : Button[] = [
   {
-    link: `${ROUTES.USER_INFO_PATHNAME}#profile`,
+    link: `${ROUTES.USER_INFO}#profile`,
     text: "View Profile",
     disabled: true
   },
   {
-    link: `${ROUTES.USER_INFO_PATHNAME}#inventory`,
+    link: `${ROUTES.USER_INFO}#inventory`,
     text: "View Inventory"
   }
 ];
@@ -57,7 +57,7 @@ const USER_INFO_BUTTONS : Button[] = [
 // Company Fun Facts Buttons
 const COMPANY_FUN_FACTS_BUTTONS : Button[] = [
   {
-    link: `${ROUTES.COMPANY_FUN_FACTS_PATHNAME}#company-info`,
+    link: `${ROUTES.COMPANY_FUN_FACTS}#company-info`,
     text: "View Company Info"
   }
 ];
@@ -65,12 +65,12 @@ const COMPANY_FUN_FACTS_BUTTONS : Button[] = [
 // Housing Buttons
 const HOUSING_BUTTONS : Button[] = [
   {
-    link: `${ROUTES.HOUSING_PATHNAME}#housing`,
+    link: `${ROUTES.HOUSING}#housing`,
     text: "View Housing",
     disabled: true
   },
   {
-    link: `${ROUTES.HOUSING_PATHNAME}#manage-housing`,
+    link: `${ROUTES.HOUSING}#manage-housing`,
     text: "Manage Housing",
     disabled: true
   }

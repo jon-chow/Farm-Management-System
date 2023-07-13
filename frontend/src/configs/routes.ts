@@ -1,17 +1,12 @@
-const LOGIN_PATHNAME = "/login";
-const DASHBOARD_PATHNAME = "/dashboard";
-
-const FARMER_ACTIONS_PATHNAME = "/farmer-actions";
-const USER_INFO_PATHNAME = "/user-info";
-const COMPANY_FUN_FACTS_PATHNAME = "/company-fun-facts";
-const HOUSING_PATHNAME = "/housing";
-
-
-export {
-  LOGIN_PATHNAME,
-  DASHBOARD_PATHNAME,
-  FARMER_ACTIONS_PATHNAME,
-  USER_INFO_PATHNAME,
-  COMPANY_FUN_FACTS_PATHNAME,
-  HOUSING_PATHNAME,
+/**
+ * Routes for the application.
+ * @readonly
+ */
+export const ROUTES = {
+	LOGIN: "/login",
+	DASHBOARD: "/dashboard",
+	FARMER_ACTIONS: "/farmer-actions",
+	USER_INFO: "/user-info",
+	COMPANY_FUN_FACTS: "/company-fun-facts",
+	HOUSING: "/housing",
 };

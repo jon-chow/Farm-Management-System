@@ -3,14 +3,13 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import RequireAuth from "./features/auth/RequireAuth";
 
 import LoginPage from './pages/LoginPage';
-// import ErrorPage from './pages/ErrorPage';
 import DashboardPage from './pages/DashboardPage';
 import FarmerActionsPage from "./pages/DashboardPage/FarmActionsPage";
 import UserInfoPage from "./pages/DashboardPage/UserInfoPage";
 import CompanyFunFactsPage from "./pages/DashboardPage/CompanyFunFactsPage";
 import HousingPage from "./pages/DashboardPage/HousingPage";
 
-import * as ROUTES from "./configs/routes";
+import { ROUTES } from "./configs/routes";
 
 
 /* -------------------------------------------------------------------------- */
@@ -18,6 +17,7 @@ import * as ROUTES from "./configs/routes";
 /* -------------------------------------------------------------------------- */
 /**
  * Renders the main application component.
+ * @returns {React.ReactElement} The main application component.
  */
 const App = (): React.ReactElement => {
   return (
@@ -26,19 +26,19 @@ const App = (): React.ReactElement => {
         <Routes>
           {/* Protected Routes */}
           <Route path="/" element={<RequireAuth allowedRoles={["owner", "admin", "farmer"]} />}>
-            <Route path={ROUTES.DASHBOARD_PATHNAME} element={<DashboardPage />} />
-            <Route path={ROUTES.FARMER_ACTIONS_PATHNAME} element={<FarmerActionsPage />} />
-            <Route path={ROUTES.USER_INFO_PATHNAME} element={<UserInfoPage />} />
-            <Route path={ROUTES.COMPANY_FUN_FACTS_PATHNAME} element={<CompanyFunFactsPage />} />
-            <Route path={ROUTES.HOUSING_PATHNAME}element={<HousingPage />} />
-            <Route path="" element={<Navigate to={ROUTES.DASHBOARD_PATHNAME} />} />
-            <Route path="*" element={<Navigate to={ROUTES.DASHBOARD_PATHNAME} />} />
+            <Route path={ROUTES.DASHBOARD} element={<DashboardPage />} />
+            <Route path={ROUTES.FARMER_ACTIONS} element={<FarmerActionsPage />} />
+            <Route path={ROUTES.USER_INFO} element={<UserInfoPage />} />
+            <Route path={ROUTES.COMPANY_FUN_FACTS} element={<CompanyFunFactsPage />} />
+            <Route path={ROUTES.HOUSING}element={<HousingPage />} />
+            <Route path="" element={<Navigate to={ROUTES.DASHBOARD} />} />
+            <Route path="*" element={<Navigate to={ROUTES.DASHBOARD} />} />
           </Route>
 
           {/* Public Routes */}
-          <Route path="/" element={<Navigate to={ROUTES.LOGIN_PATHNAME} />} />
-          <Route path={ROUTES.LOGIN_PATHNAME} element={<LoginPage />} />
-          <Route path="*" element={<Navigate to={ROUTES.LOGIN_PATHNAME} />} />
+          <Route path="/" element={<Navigate to={ROUTES.LOGIN} />} />
+          <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+          <Route path="*" element={<Navigate to={ROUTES.LOGIN} />} />
         </Routes>
       </Router>
     </div>
