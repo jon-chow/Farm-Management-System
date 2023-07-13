@@ -7,7 +7,7 @@ import {
 } from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 import { ComponentState } from "react";
 
-import { setCredentials } from "@/features/auth/auth.slice";
+import { setCredentials } from "@/app/auth/auth.slice";
 
 
 /**

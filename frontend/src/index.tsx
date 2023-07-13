@@ -7,7 +7,7 @@ import App from './App';
 import { BackgroundProvider } from './contexts/BackgroundContext';
 import { ModalProvider } from './contexts/ModalContext';
 
-import { store } from './api/store';
+import { store } from './app/store';
 
 import './index.css';
 

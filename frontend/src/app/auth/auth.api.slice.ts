@@ -1,4 +1,4 @@
-import { apiSlice } from "@/api/api.slice";
+import { apiSlice } from "@/app/api/api.slice";
 import { logOut, setCredentials } from "./auth.slice";
 
 

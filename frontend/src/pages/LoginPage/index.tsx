@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import { GiWheat } from 'react-icons/gi';
 
-import { useLoginMutation } from '@/features/auth/auth.api.slice';
+import { useLoginMutation } from '@/app/auth/auth.api.slice';
 
 import BackgroundContext from '@/contexts/BackgroundContext';
 
