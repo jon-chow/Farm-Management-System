@@ -38,59 +38,70 @@ public class LivestockService extends BaseService implements ILivestockService {
     /**
      * Retrieves all livestock data from database
      */
+    @Override
     public List<LivestockDto> getLivestock() {
         List<LivestockModel> livestockList = livestockDao.getLivestock();
         return toDto(livestockList);
     }
 
-    public List<LivestockDto> getFilteredLivestock(String harvestable, AnimalType animalType, CropType diet, int minAge, int maxAge,
-                                                   int minTagID, int maxTagID, int minWaterSpent, int minFoodSpent) {
-        LivestockFilterModel model = new LivestockFilterModel(harvestable, animalType, diet, minAge, maxAge,
-                minTagID, maxTagID, minWaterSpent, minFoodSpent);
-
-        ArrayList<JSONObject> livestock = dbHandler.getFilteredLivestock(model);
-        JSONArray livestockArray = new JSONArray(livestock);
-
-        // TODO: convert from model to dto
-        return null;
-
-        //return livestockArray;
-    }
-
-    public List<LivestockDto> getWaterAndFoodOfLivestock(int tagID) {
-        ArrayList<JSONObject> data = dbHandler.getWaterAndFoodSpentOfLivestock(tagID);
-        JSONArray dataArray = new JSONArray(data);
-
-        // TODO: convert from model to dto
-        return null;
-        //return dataArray;
-    }
-
-    public LivestockDto deleteLivestock(int tagID) {
-        // TODO: convert from model to dto
-        return null;
-        // return dbHandler.deleteLivestock(tagID);
-    }
-
     /**
      * Insert a livestock given info
      */
-    public LivestockDto insertLivestock(LivestockModel model) {
-        // TODO: convert from model to dto
-        livestockDao.insertLivestock(model);
-        return null;
-        // return dbHandler.insertLivestock(model);
+    public LivestockDto insertLivestock(LivestockDto livestockDto) {
+        LivestockModel livestockModel = toModel(livestockDto);
+        livestockDao.insertLivestock(livestockModel);
+        return livestockDto;
     }
+
+    @Override
+    public LivestockDto updateLivestock(LivestockDto livestockDto, int tagID) {
+        LivestockModel livestockModel = toModel(livestockDto);
+        livestockDao.updateLivestock(livestockModel, tagID);
+        return livestockDto;
+    }
+
+    public void deleteLivestock(int tagID) {
+        livestockDao.deleteLivestock(tagID);
+    }
+
+    private LivestockDto toDto(final LivestockModel livestockModel) {
+        return LivestockDto.builder()
+                .tagID(livestockModel.getTagID())
+                .animalType(livestockModel.getAnimalType())
+                .age(livestockModel.getAge())
+                .diet(livestockModel.getDiet())
+                .weight(livestockModel.getWeight())
+                .lastFed(livestockModel.getLastFed())
+                .harvestable(livestockModel.isHarvestable())
+                .lastViolatedForHarvestedGoods(livestockModel.getLastViolatedForHarvestedGoods())
+                .build();
+    }
+
+    private List<LivestockDto> toDto(final List<LivestockModel> livestockModels) {
+        List<LivestockDto> livestockDtos = new ArrayList<>();
+        for (LivestockModel livestockModel : livestockModels) {
+            livestockDtos.add(toDto(livestockModel));
+        }
+        return livestockDtos;
+    }
+
+    private LivestockModel toModel(final LivestockDto livestockDto) {
+        return LivestockModel.builder()
+                .tagID(livestockDto.getTagID())
+                .animalType(livestockDto.getAnimalType())
+                .age(livestockDto.getAge())
+                .diet(livestockDto.getDiet())
+                .weight(livestockDto.getWeight())
+                .lastFed(livestockDto.getLastFed())
+                .harvestable(livestockDto.isHarvestable())
+                .lastViolatedForHarvestedGoods(livestockDto.getLastViolatedForHarvestedGoods())
+                .build();
+    }
+
 
     /**
-     * Update a livestock with given info
+     * OLD STUFF/METHODS
      */
-
-    public LivestockDto updateLivestock(Livestock_4_Model model, ActionType actionType) {
-        // TODO: convert from model to dto
-        return null;
-        // return dbHandler.updateLivestock(model, actionType);
-    }
 
     /**
      * Join query with vet records
@@ -116,28 +127,26 @@ public class LivestockService extends BaseService implements ILivestockService {
         return dataArray;
     }
 
-    private LivestockDto toDto(final LivestockModel livestockModel) {
-        return LivestockDto.builder()
-                .tagID(livestockModel.getTagID())
-                .animalType(livestockModel.getAnimalType())
-                .age(livestockModel.getAge())
-                .diet(livestockModel.getDiet())
-                .weight(livestockModel.getWeight())
-                .lastFed(livestockModel.getLastFed())
-                .harvestable(livestockModel.isHarvestable())
-                .lastViolatedForHarvestedGoods(livestockModel.getLastViolatedForHarvestedGoods())
-                .build();
+    public List<LivestockDto> getFilteredLivestock(String harvestable, AnimalType animalType, CropType diet, int minAge, int maxAge,
+                                                   int minTagID, int maxTagID, int minWaterSpent, int minFoodSpent) {
+        LivestockFilterModel model = new LivestockFilterModel(harvestable, animalType, diet, minAge, maxAge,
+                minTagID, maxTagID, minWaterSpent, minFoodSpent);
+
+        ArrayList<JSONObject> livestock = dbHandler.getFilteredLivestock(model);
+        JSONArray livestockArray = new JSONArray(livestock);
+
+        // TODO: convert from model to dto
+        return null;
+
+        //return livestockArray;
     }
 
-    private List<LivestockDto> toDto(final List<LivestockModel> livestockModels) {
-        List<LivestockDto> livestockDtos = new ArrayList<>();
-        for (LivestockModel livestockModel: livestockModels) {
-            livestockDtos.add(toDto(livestockModel));
-        }
-        return livestockDtos;
-    }
-    private LivestockModel toModel(final LivestockDto livestockDto) {
-        // TODO: implement?
+    public List<LivestockDto> getWaterAndFoodOfLivestock(int tagID) {
+        ArrayList<JSONObject> data = dbHandler.getWaterAndFoodSpentOfLivestock(tagID);
+        JSONArray dataArray = new JSONArray(data);
+
+        // TODO: convert from model to dto
         return null;
+        //return dataArray;
     }
 }

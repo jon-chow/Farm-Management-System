@@ -3,49 +3,41 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.fms.mapper.LivestockMapper">
-    <select id="get-all-livestock" resultType="com.server.model.models.livestock.LivestockModel">
+<mapper namespace="com.server.mapper.LivestockMapper">
+    <select id="getAllLivestock" resultType="com.server.model.models.livestock.LivestockModel">
         SELECT tag_id AS tagID,
-               animal_type AS animalType,
-               age AS age,
-               diet AS diet,
-               weight AS weight,
-               last_fed AS lastFed,
-               harvestable AS harvestable,
-               last_violated_for_harvested_goods AS lastViolatedForHarvestedGoods
+        animal_type AS animalType,
+        age AS age,
+        diet AS diet,
+        weight AS weight,
+        last_fed AS lastFed,
+        harvestable AS harvestable,
+        last_violated_for_harvested_goods AS lastViolatedForHarvestedGoods
         FROM livestock
         ORDER BY tagID
     </select>
 
-    <select id="get-all-users" resultType="com.server.model.models.livestock.LivestockModel">
-        SELECT id as id,
-               first_name as firstName,
-               last_name as lastName,
-               email,
-               password,
-               username
-        from people
-        order by id
-    </select>
-    <insert id="insert-livestock" parameterType="com.server.model.models.livestock.LivestockModel">
-        INSERT INTO livestock (tagID, animalType, age, diet, weight, lastFed, harvestable, lastViolatedForHarvestedGoods)
-        VALUES (#{tagID}, #{animalType}, #{age}, #{diet}, #{weight}, #{lastFed}, #{harvestable}, #{lastViolatedForHarvestedGoods})
+    <insert id="insertLivestock">
+        INSERT INTO livestock (tag_id, animal_type, age, diet, weight, last_fed, harvestable,
+        last_violated_for_harvested_goods)
+        VALUES (#{livestock.tagID}, #{livestock.animalType}, #{livestock.age}, #{livestock.diet}, #{livestock.weight},
+        #{livestock.lastFed}, #{livestock.harvestable}, #{livestock.lastViolatedForHarvestedGoods})
     </insert>
 
-   <!-- <insert id="insert-user" parameterType="int" useGeneratedKeys="true" keyProperty="id">
-        insert people (first_name,last_name,email,password,username) values (#{firstName},#{lastName},#{email},#{password},#{username})
-    </insert>
+    <update id="updateLivestock">
+        UPDATE livestock
+        SET animal_type = #{livestock.animalType},
+        age = #{livestock.age},
+        diet = #{livestock.diet},
+        weight = #{livestock.weight},
+        last_fed = #{livestock.lastFed},
+        harvestable = #{livestock.harvestable},
+        last_violated_for_harvested_goods = #{livestock.lastViolatedForHarvestedGoods}
+        WHERE tag_id = #{tagID}
+    </update>
 
-    <update id="update-user" parameterType="com.fms.mapper.LivestockMapper">
-        UPDATE people
-        SET
-            first_name = #{firstName},
-            last_name = #{lastName},
-            email = #{email},
-            password = #{password},
-            username = #{username}
-        WHERE id = #{id};
-    </update>-->
-
-
+    <delete id="deleteLivestock">
+        DELETE FROM livestock
+        WHERE tag_id = #{tagID}
+    </delete>
 </mapper>
