@@ -8,12 +8,12 @@ import {
 
 import { CropType, CropVariant, CropStatus } from '@/utils/enums';
 
-import CanolaProfile from '@/assets/crops/canola.png';
-import WheatProfile from '@/assets/crops/wheat.png';
-import CornProfile from '@/assets/crops/corn.png';
-import PotatoProfile from '@/assets/crops/potato.png';
-import MustardProfile from '@/assets/crops/mustard.png';
-import CoconutProfile from '@/assets/crops/coconut.png';
+import CanolaProfile from '@/assets/images/crops/canola.png';
+import WheatProfile from '@/assets/images/crops/wheat.png';
+import CornProfile from '@/assets/images/crops/corn.png';
+import PotatoProfile from '@/assets/images/crops/potato.png';
+import MustardProfile from '@/assets/images/crops/mustard.png';
+import CoconutProfile from '@/assets/images/crops/coconut.png';
 
 import styles from './TendFieldsPanel.module.scss';
 

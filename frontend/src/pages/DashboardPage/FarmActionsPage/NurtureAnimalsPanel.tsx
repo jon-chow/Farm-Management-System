@@ -24,10 +24,10 @@ import {
 import { ActionTypes, AnimalType, CropType } from "@/utils/enums";
 import { convertDateToSQL } from "@/utils/DatesSQL";
 
-import ChickenProfile from "@/assets/livestock/chicken.png";
-import CowProfile from "@/assets/livestock/cow.png";
-import PigProfile from "@/assets/livestock/pig.png";
-import SheepProfile from "@/assets/livestock/sheep.png";
+import ChickenProfile from "@/assets/images/livestock/chicken.png";
+import CowProfile from "@/assets/images/livestock/cow.png";
+import PigProfile from "@/assets/images/livestock/pig.png";
+import SheepProfile from "@/assets/images/livestock/sheep.png";
 
 import styles from "./NurtureAnimalsPanel.module.scss";
 

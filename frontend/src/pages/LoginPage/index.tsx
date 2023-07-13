@@ -5,7 +5,7 @@ import { useLoginMutation } from '@/app/auth/auth.api.slice';
 
 import BackgroundContext from '@/contexts/BackgroundContext';
 
-import BackgroundImg from '@/assets/backgrounds/background2.png';
+import BackgroundImg from '@/assets/images/backgrounds/background2.png';
 
 import styles from './index.module.scss';
 

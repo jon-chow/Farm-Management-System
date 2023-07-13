@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react';
 
-import BackgroundImg from '@/assets/backgrounds/background.png';
+import BackgroundImg from '@/assets/images/backgrounds/background.png';
 
 import styles from './BackgroundContext.module.scss';
 
