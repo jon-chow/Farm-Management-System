@@ -38,26 +38,13 @@ public class LivestockService extends BaseService implements ILivestockService {
     /**
      * Retrieves all livestock data from database
      */
-    @Transactional
     public List<LivestockDto> getLivestock() {
         List<LivestockModel> livestockList = livestockDao.getLivestock();
-
-        // TODO: convert from model to dto
-        return null;
-        // return livestockList;
-    }
-
-    public List<LivestockDto> getLivestock(HttpServletRequest req) {
-        ArrayList<JSONObject> livestock = dbHandler.getLivestock();
-        JSONArray livestockArray = new JSONArray(livestock);
-
-        // TODO: convert from model to dto
-        return null;
-        // return livestockArray;
+        return toDto(livestockList);
     }
 
     public List<LivestockDto> getFilteredLivestock(String harvestable, AnimalType animalType, CropType diet, int minAge, int maxAge,
-                                          int minTagID, int maxTagID, int minWaterSpent, int minFoodSpent) {
+                                                   int minTagID, int maxTagID, int minWaterSpent, int minFoodSpent) {
         LivestockFilterModel model = new LivestockFilterModel(harvestable, animalType, diet, minAge, maxAge,
                 minTagID, maxTagID, minWaterSpent, minFoodSpent);
 
@@ -127,5 +114,30 @@ public class LivestockService extends BaseService implements ILivestockService {
         ArrayList<JSONObject> data = dbHandler.findCountedTypesSoldByAge(age);
         JSONArray dataArray = new JSONArray(data);
         return dataArray;
+    }
+
+    private LivestockDto toDto(final LivestockModel livestockModel) {
+        return LivestockDto.builder()
+                .tagID(livestockModel.getTagID())
+                .animalType(livestockModel.getAnimalType())
+                .age(livestockModel.getAge())
+                .diet(livestockModel.getDiet())
+                .weight(livestockModel.getWeight())
+                .lastFed(livestockModel.getLastFed())
+                .harvestable(livestockModel.isHarvestable())
+                .lastViolatedForHarvestedGoods(livestockModel.getLastViolatedForHarvestedGoods())
+                .build();
+    }
+
+    private List<LivestockDto> toDto(final List<LivestockModel> livestockModels) {
+        List<LivestockDto> livestockDtos = new ArrayList<>();
+        for (LivestockModel livestockModel: livestockModels) {
+            livestockDtos.add(toDto(livestockModel));
+        }
+        return livestockDtos;
+    }
+    private LivestockModel toModel(final LivestockDto livestockDto) {
+        // TODO: implement?
+        return null;
     }
 }

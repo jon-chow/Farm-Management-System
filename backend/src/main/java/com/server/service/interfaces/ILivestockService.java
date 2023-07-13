@@ -15,8 +15,6 @@ import java.util.List;
 public interface ILivestockService {
     public List<LivestockDto> getLivestock();
 
-    public List<LivestockDto> getLivestock(HttpServletRequest req);
-
     public List<LivestockDto> getFilteredLivestock(String harvestable, AnimalType animalType, CropType diet, int minAge, int maxAge,
                                           int minTagID, int maxTagID, int minWaterSpent, int minFoodSpent);
 

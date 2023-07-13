@@ -5,6 +5,7 @@ import com.server.model.enums.CropType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.Date;
 
