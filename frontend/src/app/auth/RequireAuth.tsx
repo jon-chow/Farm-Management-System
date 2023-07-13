@@ -2,6 +2,8 @@ import { useLocation, Navigate, Outlet, Location } from "react-router-dom";
 
 import useAuth from "@/hooks/useAuth";
 
+import { ROUTES, getPathFromRoute } from "@/configs/routes";
+
 
 /* -------------------------------------------------------------------------- */
 /*                                  COMPONENT                                 */
@@ -16,7 +18,7 @@ const RequireAuth = ({ allowedRoles }: { allowedRoles: string[] }): JSX.Element 
 
 	return roles.some((role: string) => allowedRoles.includes(role)) ? 
 		<Outlet /> :
-		<Navigate to="/login" state={{ from: location }} replace />;
+		<Navigate to={getPathFromRoute(ROUTES.LOGIN)} state={{ from: location }} />;
 };
 
 export default RequireAuth;

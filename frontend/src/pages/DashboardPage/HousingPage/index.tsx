@@ -3,7 +3,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 
 import NavBar from '@/components/NavBar';
 
-import { ROUTES } from '@/configs/routes';
+import { ROUTES, getPathFromRoute } from '@/configs/routes';
 
 import ViewHousingPanel from './ViewHousingPanel';
 import ManageHousingPanel from './ManageHousingPanel';
@@ -20,7 +20,7 @@ const Housing = () => {
   useEffect(() => {
     const { pathname, hash } = location;
     
-    if (pathname === ROUTES.HOUSING) {
+    if (pathname === getPathFromRoute(ROUTES.HOUSING)) {
       switch (hash) {
         case '#housing':
           setPanel(<ViewHousingPanel />);

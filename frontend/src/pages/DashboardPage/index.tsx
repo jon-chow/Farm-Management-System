@@ -1,10 +1,9 @@
-import { To } from 'react-router-dom';
+import { To, Link } from 'react-router-dom';
 import { GiBarn, GiFarmer, GiPerson, GiBroccoli } from 'react-icons/gi';
 
-import { ROUTES } from '@/configs/routes';
+import { ROUTES, getPathFromRoute } from '@/configs/routes';
 
 import NavBar from '@/components/NavBar';
-import { Link } from 'react-router-dom';
 
 import styles from './index.module.scss';
 
@@ -21,21 +20,21 @@ interface Button {
 // Farmer Actions Buttons
 const FARMER_ACTIONS_BUTTONS : Button[] = [
   {
-    link: `${ROUTES.FARMER_ACTIONS}#tend-fields`,
+    link: `${getPathFromRoute(ROUTES.FARMER_ACTIONS)}#tend-fields`,
     text: "Tend Fields",
     disabled: true
   },
   {
-    link: `${ROUTES.FARMER_ACTIONS}#nurture-animals`,
+    link: `${getPathFromRoute(ROUTES.FARMER_ACTIONS)}#nurture-animals`,
     text: "Nurture Animals"
   },
   {
-    link: `${ROUTES.FARMER_ACTIONS}#sell-products`,
+    link: `${getPathFromRoute(ROUTES.FARMER_ACTIONS)}#sell-products`,
     text: "Sell Products",
     disabled: true
   },
   {
-    link: `${ROUTES.FARMER_ACTIONS}#manage-facilities`,
+    link: `${getPathFromRoute(ROUTES.FARMER_ACTIONS)}#manage-facilities`,
     text: "Manage Facilities",
     disabled: true
   }
@@ -44,12 +43,12 @@ const FARMER_ACTIONS_BUTTONS : Button[] = [
 // User Info Buttons
 const USER_INFO_BUTTONS : Button[] = [
   {
-    link: `${ROUTES.USER_INFO}#profile`,
+    link: `${getPathFromRoute(ROUTES.USER_INFO)}#profile`,
     text: "View Profile",
     disabled: true
   },
   {
-    link: `${ROUTES.USER_INFO}#inventory`,
+    link: `${getPathFromRoute(ROUTES.USER_INFO)}#inventory`,
     text: "View Inventory"
   }
 ];
@@ -57,7 +56,7 @@ const USER_INFO_BUTTONS : Button[] = [
 // Company Fun Facts Buttons
 const COMPANY_FUN_FACTS_BUTTONS : Button[] = [
   {
-    link: `${ROUTES.COMPANY_FUN_FACTS}#company-info`,
+    link: `${getPathFromRoute(ROUTES.COMPANY_FUN_FACTS)}#company-info`,
     text: "View Company Info"
   }
 ];
@@ -65,12 +64,12 @@ const COMPANY_FUN_FACTS_BUTTONS : Button[] = [
 // Housing Buttons
 const HOUSING_BUTTONS : Button[] = [
   {
-    link: `${ROUTES.HOUSING}#housing`,
+    link: `${getPathFromRoute(ROUTES.HOUSING)}#housing`,
     text: "View Housing",
     disabled: true
   },
   {
-    link: `${ROUTES.HOUSING}#manage-housing`,
+    link: `${getPathFromRoute(ROUTES.HOUSING)}#manage-housing`,
     text: "Manage Housing",
     disabled: true
   }

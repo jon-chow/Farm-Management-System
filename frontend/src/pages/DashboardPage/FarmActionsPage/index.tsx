@@ -3,7 +3,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 
 import NavBar from '@/components/NavBar';
 
-import { ROUTES } from '@/configs/routes';
+import { ROUTES, getPathFromRoute } from '@/configs/routes';
 
 import TendFieldsPanel from './TendFieldsPanel';
 import NurtureAnimalsPanel from './NurtureAnimalsPanel';
@@ -22,7 +22,7 @@ const FarmerActions = () => {
   useEffect(() => {
     const { pathname, hash } = location;
     
-    if (pathname === ROUTES.FARMER_ACTIONS) {
+    if (pathname === getPathFromRoute(ROUTES.FARMER_ACTIONS)) {
       switch (hash) {
         case '#tend-fields':
           setPanel(<TendFieldsPanel />);

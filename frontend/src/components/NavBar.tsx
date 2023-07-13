@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { GiFarmTractor } from 'react-icons/gi';
 
 import useAuth from '@/hooks/useAuth';
+import { ROUTES, getPathFromRoute } from "@/configs/routes";
 
 import styles from './NavBar.module.scss';
 
@@ -28,7 +29,7 @@ const NavBar = (): React.ReactElement => {
         type="button"
         title="Dashboard"
       >
-        <Link to="/dashboard">
+        <Link to={getPathFromRoute(ROUTES.DASHBOARD)}>
           <GiFarmTractor />
         </Link>
       </button>

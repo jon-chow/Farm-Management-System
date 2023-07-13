@@ -3,7 +3,7 @@ import { Navigate, useLocation } from 'react-router-dom';
 
 import NavBar from '@/components/NavBar';
 
-import { ROUTES } from '@/configs/routes';
+import { ROUTES, getPathFromRoute } from '@/configs/routes';
 
 import ViewCompanyInfoPanel from './ViewCompanyInfoPanel';
 
@@ -19,7 +19,7 @@ const CompanyFunFacts = () => {
   useEffect(() => {
     const { pathname, hash } = location;
     
-    if (pathname === ROUTES.COMPANY_FUN_FACTS) {
+    if (pathname === getPathFromRoute(ROUTES.COMPANY_FUN_FACTS)) {
       switch (hash) {
         case '#company-info':
           setPanel(<ViewCompanyInfoPanel />);
