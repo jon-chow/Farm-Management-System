@@ -1,4 +1,4 @@
-/**
+/*
   users table set up
  */
 CREATE OR REPLACE TABLE users
@@ -11,7 +11,7 @@ INSERT INTO users (username, password)
 VALUES ('admin', 'admin'),
        ('guest', 'guest');
 
-/**
+/*
   livestock table set up
  */
 CREATE OR REPLACE TABLE livestock
@@ -19,24 +19,25 @@ CREATE OR REPLACE TABLE livestock
     tag_id                            INT PRIMARY KEY AUTO_INCREMENT,
     animal_type                       ENUM ('CHICKEN', 'SHEEP', 'COW', 'PIG'),
     age                               INT,
+    diet                              ENUM ('CANOLA','WHEAT','CORN','POTATOES','MUSTARD','COCONUT'),
     weight                            REAL,
     last_fed                          DATE,
     harvestable                       BOOL,
     last_violated_for_harvested_goods DATE
 );
 
-INSERT INTO livestock (animal_type, age, weight, last_fed, harvestable, last_violated_for_harvested_goods)
-VALUES ('CHICKEN', 1, 0.5, '2023-07-08', FALSE, NULL),
-       ('SHEEP', 2, 30.2, '2023-07-07', TRUE, '2023-07-06'),
-       ('COW', 3, 500.8, '2023-07-09', FALSE, NULL),
-       ('PIG', 2, 150.3, '2023-07-08', TRUE, '2023-07-07'),
-       ('CHICKEN', 1, 0.7, '2023-07-10', FALSE, NULL),
-       ('SHEEP', 3, 35.8, '2023-07-09', TRUE, '2023-07-08'),
-       ('COW', 4, 550.2, '2023-07-11', FALSE, NULL),
-       ('PIG', 3, 160.6, '2023-07-10', TRUE, '2023-07-09');
+INSERT INTO livestock (animal_type, age, diet, weight, last_fed, harvestable, last_violated_for_harvested_goods)
+VALUES ('CHICKEN', 1, 'WHEAT',0.5, '2023-07-08', FALSE, NULL),
+       ('SHEEP', 2, 'WHEAT',30.2, '2023-07-07', TRUE, '2023-07-06'),
+       ('COW', 3, 'CORN',500.8, '2023-07-09', FALSE, NULL),
+       ('PIG', 2, 'POTATOES', 150.3, '2023-07-08', TRUE, '2023-07-07'),
+       ('CHICKEN', 1, 'WHEAT', 0.7, '2023-07-10', FALSE, NULL),
+       ('SHEEP', 3, 'CANOLA', 35.8, '2023-07-09', TRUE, '2023-07-08'),
+       ('COW', 4, 'MUSTARD', 550.2, '2023-07-11', FALSE, NULL),
+       ('PIG', 3, 'COCONUT', 160.6, '2023-07-10', TRUE, '2023-07-09');
 
 
-/**
+/*
   pen table set up
  */
 CREATE OR REPLACE TABLE pen
@@ -49,7 +50,7 @@ CREATE OR REPLACE TABLE pen
     type_of_animals ENUM ('CHICKEN', 'SHEEP', 'COW', 'PIG')
 );
 
-/**
+/*
   housing table set up
  */
 CREATE OR REPLACE TABLE housing
@@ -64,7 +65,7 @@ CREATE OR REPLACE TABLE housing
     distance_from_pens INT
 );
 
-/**
+/*
   farmers table set up
  */
 CREATE TABLE Farmers_2
@@ -82,7 +83,7 @@ CREATE TABLE Farmers_1
     salary              INT
 );
 
-/**
+/*
   veterinary records table set up
  */
 CREATE OR REPLACE TABLE veterinary_records_has
@@ -96,7 +97,7 @@ CREATE OR REPLACE TABLE veterinary_records_has
 );
 
 
-/**
+/*
   crop table set up
  */
 CREATE OR REPLACE TABLE crops

@@ -22,7 +22,7 @@ import java.util.Map;
 
 @RestController
 // @CrossOrigin(origins = "http://localhost:8080")
-@RequestMapping(value = "/api/livestock")
+@RequestMapping(value = "/api/v1/livestock")
 public class LivestockController {
 
     // TODO: refactor to use something like 'LivestockService'
@@ -35,12 +35,11 @@ public class LivestockController {
 
     /**
      * Handles Retrieving Livestock Requests
-     * GET /api/livestock
+     * GET /api/v1/livestock
      */
     @GetMapping(value = "")
-    public RestResult<List<LivestockDto>> getLivestock(HttpServletRequest req, HttpServletResponse res) throws IOException {
-        System.out.println("Getting Livestock!");
-        List<LivestockDto> livestock = system.getLivestock(req);
+    public RestResult<List<LivestockDto>> getLivestock() {
+        List<LivestockDto> livestock = system.getLivestock();
         return RestResult.success(livestock);
     }
 
@@ -48,7 +47,7 @@ public class LivestockController {
      * Handles Filtering Livestock By: harvestable, animalType, min Age, max Age, diet, min tagID, max tagID,
      * minWaterSpent, minFoodSpent
      * <p>
-     * POST /api/livestock/filteredValues
+     * POST /api/v1/livestock/filteredValues
      */
     @PostMapping(value = "/filteredValues")
     @ResponseBody
@@ -84,7 +83,7 @@ public class LivestockController {
     /**
      * Handles Insert Livestock Requests
      * <p>
-     * POST /api/livestock
+     * POST /api/v1/livestock
      */
     @PostMapping(value = "")
     public RestResult<LivestockDto> insertLiveStock(@RequestBody Map<String, Object> map) {
@@ -96,7 +95,7 @@ public class LivestockController {
     /**
      * Handles Delete Livestock Requests
      * <p>
-     * DELETE /api/livestock
+     * DELETE /api/v1/livestock
      */
     @DeleteMapping(value = "")
     @ResponseBody
@@ -109,7 +108,7 @@ public class LivestockController {
     /**
      * Handles Update Livestock Requests
      * <p>
-     * PATCH /api/livestock
+     * PATCH /api/v1/livestock
      */
     @PatchMapping(value = "")
     @ResponseBody
@@ -124,7 +123,7 @@ public class LivestockController {
     /**
      * Handles getVetRecords request for the livestock
      * <p>
-     * GET /api/livestock/vetRecords
+     * GET /api/v1/livestock/vetRecords
      */
     @GetMapping(value = "/vetRecords")
     public RestResult<LivestockModel> getVetRecords(@RequestBody Map<String, Object> map, HttpServletResponse res) throws IOException {
@@ -144,7 +143,7 @@ public class LivestockController {
     /**
      * Gets the total food and water spent for a given livestock (tagID)
      * <p>
-     * GET /api/livestock/foodWaterSpent
+     * GET /api/v1/livestock/foodWaterSpent
      */
     @GetMapping(value = "/foodWaterSpent")
     public RestResult<LivestockModel> getFoodWaterSpent(@RequestBody Map<String, Object> map, HttpServletResponse res) throws IOException {
@@ -165,7 +164,7 @@ public class LivestockController {
     /**
      * Gets the animal count for each animal type
      * <p>
-     * GET /api/livestock/count
+     * GET /api/v1/livestock/count
      */
     @GetMapping(value = "/count")
     public RestResult<LivestockModel> getAnimalCountType(HttpServletResponse res) throws IOException {
@@ -184,7 +183,7 @@ public class LivestockController {
     /**
      * Gets the animal count for each animal type filtered by age
      * <p>
-     * GET /api/livestock/animalCountByAge
+     * GET /api/v1/livestock/animalCountByAge
      */
     @GetMapping(value = "/animalCountByAge")
     public RestResult<LivestockModel> getAnimalCountTypeByAge(@RequestParam(name = "age") String age, HttpServletResponse res) throws IOException {
