@@ -102,15 +102,15 @@ the Authorization header as a Bearer token.
 
 ### Update an existing livestock
 
-* Endpoint: /api/v1/livestock
+* Endpoint: /api/v1/livestock/{tagID}
 * Method: PUT
 * Description: Updates an existing livestock entry.
-* Request Parameters: None
+* Request Parameters:
+   {tagId} (path parameter): The tag ID of the livestock to be updated.
 * Request Body:
 
 ```json
 {
-  "tag_id": 1,
   "animal_type": "COW",
   "age": 3,
   "diet": "WHEAT",
