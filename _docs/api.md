@@ -102,15 +102,15 @@ the Authorization header as a Bearer token.
 
 ### Update an existing livestock
 
-* Endpoint: /api/v1/livestock/{tagId}
+* Endpoint: /api/v1/livestock
 * Method: PUT
 * Description: Updates an existing livestock entry.
-* Request Parameters:
-  {tagId} (path parameter): The tag ID of the livestock to be updated.
+* Request Parameters: None
 * Request Body:
 
 ```json
 {
+  "tag_id": 1,
   "animal_type": "COW",
   "age": 3,
   "diet": "WHEAT",
@@ -118,6 +118,40 @@ the Authorization header as a Bearer token.
   "last_fed": "2023-07-09",
   "harvestable": true,
   "last_violated_for_harvested_goods": null
+}
+```
+
+* Response:
+    * Status Code: 200 (OK)
+    * Body:
+
+```json
+{
+  "tag_id": 1,
+  "animal_type": "COW",
+  "age": 3,
+  "diet": "WHEAT",
+  "weight": 500.0,
+  "last_fed": "2023-07-09",
+  "harvestable": true,
+  "last_violated_for_harvested_goods": null
+}
+```
+
+### Partially updating an existing livestock
+
+* Endpoint: /api/v1/livestock/{tagId}
+* Method: PATCH
+* Description: Partially updates an existing livestock entry.
+* Request Parameters:
+  {tagId} (path parameter): The tag ID of the livestock to be updated.
+* Request Body:
+
+```json
+{
+  "age": 3,
+  "weight": 500.0,
+  "last_fed": "2023-07-09",
 }
 ```
 
