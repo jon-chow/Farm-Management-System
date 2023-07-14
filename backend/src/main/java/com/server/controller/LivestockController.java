@@ -1,17 +1,15 @@
 package com.server.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.server.dto.LivestockDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.server.bean.RestResult;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import com.server.model.enums.ActionType;
 import com.server.model.enums.AnimalType;
 import com.server.model.enums.CropType;
 import com.server.model.models.livestock.LivestockModel;
-import com.server.model.models.livestock.Livestock_4_Model;
 import org.json.JSONArray;
-import org.json.JSONObject;
 import org.springframework.web.bind.annotation.*;
 import com.server.service.interfaces.ILivestockService;
 
@@ -24,10 +22,11 @@ import java.util.Map;
 // @CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping(value = "/api/v1/livestock")
 public class LivestockController {
-
-    // TODO: refactor to use something like 'LivestockService'
     @Autowired
     private ILivestockService system;
+
+    private Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd")
+            .create();
 
     /* -------------------------------------------------------------------------- */
     /*                             LIVESTOCK REQUESTS                             */
@@ -42,6 +41,64 @@ public class LivestockController {
         List<LivestockDto> livestock = system.getLivestock();
         return RestResult.success(livestock);
     }
+
+    /**
+     * Handles Insert Livestock Requests
+     * <p>
+     * POST /api/v1/livestock
+     */
+    @PostMapping(value = "")
+    public RestResult<LivestockDto> insertLiveStock(@RequestBody String jsonPayload) {
+        LivestockDto livestockDto = gson.fromJson(jsonPayload, LivestockDto.class);
+        LivestockDto insertedLivestockDto = system.insertLivestock(livestockDto);
+        return RestResult.success(insertedLivestockDto);
+    }
+
+    /**
+     * Handles Update Livestock Requests
+     * <p>
+     * PUT /api/v1/livestock/{tagID}
+     */
+    @PutMapping(value = "/{tagID}")
+    @ResponseBody
+    public RestResult<LivestockDto> updateLivestock(@RequestBody String jsonPayload, @PathVariable("tagID") int tagID) {
+        // TODO: validate that all fields are present in jsonPayload
+        LivestockDto livestockDto = gson.fromJson(jsonPayload, LivestockDto.class);
+        system.updateLivestock(livestockDto, tagID);
+        return RestResult.success(livestockDto);
+    }
+
+    /**
+     * Handles Partially Updating Livestock Requests
+     * <p>
+     * PATCH /api/v1/livestock/{tagID}
+     */
+    @PatchMapping(value = "/{tagIID}")
+    public RestResult<LivestockDto> patchLivestock(@RequestBody String jsonPayload, @PathVariable("tagID") int tagID) {
+        // TODO: implement
+        return null;
+    }
+
+    /**
+     * Handles Delete Livestock Requests
+     * <p>
+     * DELETE /api/v1/livestock/{tagID}
+     */
+    @DeleteMapping(value = "/{tagID}")
+    @ResponseBody
+    public RestResult<LivestockDto> deleteLivestock(@PathVariable("tagID") int tagID) {
+        system.deleteLivestock(tagID);
+        return RestResult.success(null);
+    }
+
+    private LivestockModel stubLivestockModel() {
+        return new LivestockModel(-1, AnimalType.PIG, -1, CropType.WHEAT, 10,
+                null, false, null);
+    }
+
+    /**
+     * OLD STUFF/METHODS
+     */
 
     /**
      * Handles Filtering Livestock By: harvestable, animalType, min Age, max Age, diet, min tagID, max tagID,
@@ -81,44 +138,42 @@ public class LivestockController {
     }
 
     /**
-     * Handles Insert Livestock Requests
+     * Gets the animal count for each animal type filtered by age
      * <p>
-     * POST /api/v1/livestock
+     * GET /api/v1/livestock/animalCountByAge
      */
-    @PostMapping(value = "")
-    public RestResult<LivestockDto> insertLiveStock(@RequestBody Map<String, Object> map) {
-        LivestockModel livestock = LivestockModel.fromJSON(new JSONObject(map));
-        LivestockDto livestockDto = system.insertLivestock(livestock);
-        return RestResult.success(livestockDto);
+    @GetMapping(value = "/animalCountByAge")
+    public RestResult<LivestockModel> getAnimalCountTypeByAge(@RequestParam(name = "age") String age, HttpServletResponse res) throws IOException {
+        JSONArray livestock = system.getAnimalCountTypeByAge(Integer.valueOf(age));
+
+        PrintWriter out = res.getWriter();
+        res.setContentType("application/json");
+        res.setCharacterEncoding("UTF-8");
+        out.print(livestock);
+        out.flush();
+
+        // TODO: replace stub.
+        return RestResult.success(stubLivestockModel());
     }
 
     /**
-     * Handles Delete Livestock Requests
+     * Gets the animal count for each animal type
      * <p>
-     * DELETE /api/v1/livestock
+     * GET /api/v1/livestock/count
      */
-    @DeleteMapping(value = "")
-    @ResponseBody
-    public RestResult<LivestockDto> deleteLivestock(@RequestBody Map<String, Object> map) {
-        int tagIDToDelete = (int) map.get("tagID");
-        LivestockDto deletedLivestock = system.deleteLivestock(tagIDToDelete);
-        return RestResult.success(deletedLivestock);
-    }
+    @GetMapping(value = "/count")
+    public RestResult<LivestockModel> getAnimalCountType(HttpServletResponse res) throws IOException {
+        JSONArray livestock = system.getAnimalCountType();
 
-    /**
-     * Handles Update Livestock Requests
-     * <p>
-     * PATCH /api/v1/livestock
-     */
-    @PatchMapping(value = "")
-    @ResponseBody
-    public RestResult<LivestockDto> updateLivestock(@RequestBody Map<String, Object> map) {
-        Livestock_4_Model model = Livestock_4_Model.fromJSON(new JSONObject(map.get("livestock").toString()));
-        ActionType actionType = ActionType.valueOf(map.get("actionType").toString().toUpperCase());
-        LivestockDto updatedLivestock = system.updateLivestock(model, actionType);
-        return RestResult.success(updatedLivestock);
-    }
+        PrintWriter out = res.getWriter();
+        res.setContentType("application/json");
+        res.setCharacterEncoding("UTF-8");
+        out.print(livestock);
+        out.flush();
 
+        // TODO: replace stub.
+        return RestResult.success(stubLivestockModel());
+    }
 
     /**
      * Handles getVetRecords request for the livestock
@@ -160,48 +215,5 @@ public class LivestockController {
         return RestResult.success(stubLivestockModel());
     }
 
-
-    /**
-     * Gets the animal count for each animal type
-     * <p>
-     * GET /api/v1/livestock/count
-     */
-    @GetMapping(value = "/count")
-    public RestResult<LivestockModel> getAnimalCountType(HttpServletResponse res) throws IOException {
-        JSONArray livestock = system.getAnimalCountType();
-
-        PrintWriter out = res.getWriter();
-        res.setContentType("application/json");
-        res.setCharacterEncoding("UTF-8");
-        out.print(livestock);
-        out.flush();
-
-        // TODO: replace stub.
-        return RestResult.success(stubLivestockModel());
-    }
-
-    /**
-     * Gets the animal count for each animal type filtered by age
-     * <p>
-     * GET /api/v1/livestock/animalCountByAge
-     */
-    @GetMapping(value = "/animalCountByAge")
-    public RestResult<LivestockModel> getAnimalCountTypeByAge(@RequestParam(name = "age") String age, HttpServletResponse res) throws IOException {
-        JSONArray livestock = system.getAnimalCountTypeByAge(Integer.valueOf(age));
-
-        PrintWriter out = res.getWriter();
-        res.setContentType("application/json");
-        res.setCharacterEncoding("UTF-8");
-        out.print(livestock);
-        out.flush();
-
-        // TODO: replace stub.
-        return RestResult.success(stubLivestockModel());
-    }
-
-    private LivestockModel stubLivestockModel() {
-        return new LivestockModel(-1, AnimalType.PIG, -1, CropType.WHEAT, 10,
-                null, false, null);
-    }
 
 }
