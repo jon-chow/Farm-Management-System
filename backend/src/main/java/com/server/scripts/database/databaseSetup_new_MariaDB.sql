@@ -5,11 +5,24 @@ CREATE OR REPLACE TABLE users
 (
     user_id  INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(30)  NOT NULL,
-    password VARCHAR(100) NOT NULL
+    password VARCHAR(100) NOT NULL,
+    first_name VARCHAR(30),
+    last_name VARCHAR(30),
+    role REFERENCES roles(role_id),
+    last_login DATE
 );
 INSERT INTO users (username, password)
 VALUES ('admin', 'admin'),
        ('guest', 'guest');
+
+/*
+ roles table set up
+*/
+CREATE TABLE roles
+(
+    role_id INT PRIMARY KEY AUTO_INCREMENT,
+    role_name VARCHAR(30) NOT NULL
+);
 
 /*
   livestock table set up

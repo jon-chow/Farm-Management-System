@@ -27,8 +27,8 @@ public class UserDto {
 	@SerializedName("last_name")
 	private final String lastName;
 
-	@SerializedName("roles")
-	private final String[] roles;
+	@SerializedName("role")
+	private final int role;
 
 	@SerializedName("last_login")
 	private final Date lastLogin;

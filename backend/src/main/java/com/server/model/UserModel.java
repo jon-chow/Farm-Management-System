@@ -15,6 +15,6 @@ public class UserModel {
 	private final String password;
 	private final String firstName;
 	private final String lastName;
-	private final String[] roles;
+	private final int role;
 	private final Date lastLogin;
 }

@@ -60,7 +60,7 @@ public class UserService extends BaseService implements IUserService {
                 .password(userModel.getPassword())
                 .firstName(userModel.getFirstName())
                 .lastName(userModel.getLastName())
-                .roles(userModel.getRoles())
+                .role(userModel.getRole())
                 .lastLogin(userModel.getLastLogin())
                 .build();
     }
@@ -90,7 +90,7 @@ public class UserService extends BaseService implements IUserService {
                 .password(userDto.getPassword())
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
-                .roles(userDto.getRoles())
+                .role(userDto.getRole())
                 .lastLogin(userDto.getLastLogin())
                 .build();
     }

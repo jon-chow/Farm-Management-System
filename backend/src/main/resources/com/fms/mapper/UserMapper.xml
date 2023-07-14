@@ -10,7 +10,7 @@
         password AS password,
         first_name AS firstName,
         last_name AS lastName,
-        roles AS roles
+        role AS role
         last_login AS lastLogin
         FROM users
         ORDER BY userID
@@ -22,16 +22,16 @@
         password AS password,
         first_name AS firstName,
         last_name AS lastName,
-        roles AS roles
+        role AS role
         last_login AS lastLogin
         FROM users
         WHERE userID = #{userID}
     </select>
 
     <insert id="insertUser">
-        INSERT INTO users (user_id, username, password, first_name, last_name, roles, last_login)
+        INSERT INTO users (user_id, username, password, first_name, last_name, role, last_login)
         VALUES (#{user.userID}, #{user.username}, #{user.password}, #{user.firstName}, #{user.lastName},
-        #{user.roles}, #{user.lastLogin})
+        #{user.role}, #{user.lastLogin})
     </insert>
 
     <update id="updateUser">
@@ -40,7 +40,7 @@
         password = #{user.password},
         first_name = #{user.firstName},
         last_name = #{user.lastName},
-        roles = #{user.roles},
+        role = #{user.role},
         last_login = #{user.lastLogin}
         WHERE user_id = #{userID}
     </update>
