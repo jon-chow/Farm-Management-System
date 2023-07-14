@@ -5,7 +5,7 @@ import com.server.model.UserModel;
 import java.util.List;
 
 public interface IUserDao {
-    public List<UserModel> getUser();
+    public List<UserModel> getAllUser();
     public UserModel getUser(int userID);
     public void insertUser(UserModel userModel);
     public void updateUser(UserModel userModel, int userID);

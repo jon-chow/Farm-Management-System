@@ -31,8 +31,19 @@ public class UserController {
      * GET /api/v1/user
      */
     @GetMapping(value = "")
-    public RestResult<List<UserDto>> getUser() {
-        List<UserDto> user = service.getUser();
+    public RestResult<List<UserDto>> getAllUser() {
+        List<UserDto> user = service.getAllUser();
+        return RestResult.success(user);
+    }
+
+    /**
+     * Handles Retrieving User Requests by ID
+     * <p>
+     * GET /api/v1/user/{userID}
+     */
+    @GetMapping(value = "/{userID}")
+    public RestResult<UserDto> getUser(@PathVariable("userID") int userID) {
+        UserDto user = service.getUser(userID);
         return RestResult.success(user);
     }
 

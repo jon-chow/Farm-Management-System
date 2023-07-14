@@ -18,8 +18,8 @@ public class UserService extends BaseService implements IUserService {
     @Autowired
     private IUserDao userDao;
 
-    public List<UserDto> getUser() {
-        List<UserModel> userList = userDao.getUser();
+    public List<UserDto> getAllUser() {
+        List<UserModel> userList = userDao.getAllUser();
         return toDto(userList);
     }
 

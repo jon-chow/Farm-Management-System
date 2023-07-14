@@ -22,8 +22,8 @@ public class UserDao extends BaseDao implements IUserDao {
     UserMapper userMapper;
 
     @Override
-    public List<UserModel> getUser() {
-        return userMapper.getUser();
+    public List<UserModel> getAllUser() {
+        return userMapper.getAllUser();
     }
 
     @Override

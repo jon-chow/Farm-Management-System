@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    List<UserModel> getUser();
+    List<UserModel> getAllUser();
     UserModel getUser(@Param("userID") int userID);
     void insertUser(@Param("user") UserModel userModel);
     void updateUser(@Param("user") UserModel userModel, @Param("userID") int userID);

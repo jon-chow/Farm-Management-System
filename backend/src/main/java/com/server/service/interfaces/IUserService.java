@@ -9,7 +9,7 @@ public interface IUserService {
      * Get list of all users.
      * @return List of user data transfer objects.
      */
-    public List<UserDto> getUser();
+    public List<UserDto> getAllUser();
 
 	/**
 	 * Get user based on userID.
