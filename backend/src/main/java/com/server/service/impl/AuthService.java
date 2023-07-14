@@ -24,8 +24,15 @@ public class AuthService extends BaseService implements IAuthService {
         return null;
     }
 
+    // TODO: implement
     @Override
     public AuthDto logout() {
+        return null;
+    }
+
+    // TODO: implement
+    @Override
+    public String refreshToken(String token) {
         return null;
     }
 }

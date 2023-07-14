@@ -11,21 +11,21 @@ import java.util.Map;
 
 @RestController
 // @CrossOrigin(origins = "http://localhost:8080")
-@RequestMapping(value = "/api/auth")
+@RequestMapping(value = "/api/v1/auth")
 public class AuthController {
 
     @Autowired
     private IAuthService service;
 
     /**
-     * Endpoint for user to create a session and Login
-     *
-     * Returns a JWT token
-     *
-     * POST /api/user/login
+     * Handles Login Requests
+     * @return access token
+     * <p>
+     * POST /api/v1/auth/login
+     * 
+     * TODO: implement this
      */
     @PostMapping(value = "/login")
-    //@RequestMapping(value = "/login")
     public RestResult<String> login(@RequestBody Map<String, Object> body) {
         String username = body.get("username").toString();
         String password = body.get("password").toString();
@@ -34,9 +34,11 @@ public class AuthController {
     }
 
     /**
-     * Endpoint for user to logout
-     *
-     * GET /api/user/logout
+     * Handles Logout Requests
+     * <p>
+     * GET /api/v1/auth/logout
+     * 
+     * TODO: implement this
      */
     @GetMapping(value = "/logout")
     public RestResult<AuthDto> logout(){
@@ -44,6 +46,24 @@ public class AuthController {
         return RestResult.success(res);
     }
 
+    /**
+     * Handles Refresh Token Requests
+     * @return new access token
+     * <p>
+     * POST /api/v1/auth/refreshToken
+     * 
+     * TODO: implement this
+     */
+    @PostMapping(value = "/refreshToken")
+    public RestResult<AuthDto> refreshToken(@RequestBody Map<String, Object> body) {
+        return null;
+    }
+
+    /**
+     * Tests if token is valid
+     * <p>
+     * POST /api/v1/auth/testToken
+     */
     @PostMapping(value = "/testToken")
     public RestResult<String> getUserById(@RequestBody Map<String, Object> body) {
         String token = body.get("token").toString();
@@ -54,9 +74,4 @@ public class AuthController {
 
         return RestResult.success("ok");
     }
-
-//    @GetMapping(value = "/testToken")
-//    public RestResult<String> getUserById(@PathVariable("userId") final long userId) {
-//        return RestResult.success("ok");
-//    }
 }
