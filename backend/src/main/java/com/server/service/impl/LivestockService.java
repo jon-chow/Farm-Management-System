@@ -60,6 +60,11 @@ public class LivestockService extends BaseService implements ILivestockService {
         return livestockDto;
     }
 
+    @Override
+    public LivestockDto patchLivestock(LivestockDto livestockDto, int tagID) {
+        return null;
+    }
+
     public void deleteLivestock(int tagID) {
         livestockDao.deleteLivestock(tagID);
     }
