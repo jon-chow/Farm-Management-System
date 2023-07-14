@@ -1,6 +1,14 @@
 package com.server.dao.interfaces;
 
-// TODO
-public interface IUserDao {
+import com.server.model.UserModel;
 
+import java.util.List;
+
+public interface IUserDao {
+    public List<UserModel> getUser();
+    public UserModel getUser(int userID);
+    public void insertUser(UserModel userModel);
+    public void updateUser(UserModel userModel, int userID);
+    public void patchUser(UserModel userModel, int userID);
+    public void deleteUser(int userID);
 }
