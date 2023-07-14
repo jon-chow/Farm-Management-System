@@ -8,15 +8,15 @@
                         http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
     <!-- Load properties configuration file. -->
-    <context:property-placeholder location="classpath:database.properties" />
+    <context:property-placeholder location="classpath:database.properties"/>
 
-<!--     Auto scan components -->
-    <context:component-scan base-package="com.server" />
+    <!--     Auto scan components -->
+    <context:component-scan base-package="com.server"/>
 
-<!--     Autowired Annotation Bean -->
-    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+    <!--     Autowired Annotation Bean -->
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
 
 
     <!-- if you want to only load a single spring configuration file, you could import all other files here. -->
-    <import resource="spring-mybatis.xml" />
+    <import resource="spring-mybatis.xml"/>
 </beans>

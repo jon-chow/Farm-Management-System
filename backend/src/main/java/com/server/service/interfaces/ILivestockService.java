@@ -13,29 +13,41 @@ import java.util.List;
 
 
 public interface ILivestockService {
+
+    /**
+     * Get list of all livestock
+     * @return
+     */
     public List<LivestockDto> getLivestock();
 
-    public List<LivestockDto> getFilteredLivestock(String harvestable, AnimalType animalType, CropType diet, int minAge, int maxAge,
-                                          int minTagID, int maxTagID, int minWaterSpent, int minFoodSpent);
+    /**
+     * Update the livestock based on tagID.
+     * @param livestockDto
+     * @return
+     */
+    public LivestockDto updateLivestock(LivestockDto livestockDto, int tagID);
 
-    public List<LivestockDto> getWaterAndFoodOfLivestock(int tagID);
-
-    public LivestockDto deleteLivestock(int tagID);
+    public LivestockDto patchLivestock(LivestockDto livestockDto, int tagID);
 
     /**
      * Insert a livestock given info
      */
-    public LivestockDto insertLivestock(LivestockModel model);
+    public LivestockDto insertLivestock(LivestockDto livestockDto);
+
+    public List<LivestockDto> getWaterAndFoodOfLivestock(int tagID);
+
+    public void deleteLivestock(int tagID);
+
+
+
 
     /**
-     * Update a livestock with given info
+     * OLD STUFF/METHODS
      */
 
-    public LivestockDto updateLivestock(Livestock_4_Model model, ActionType actionType);
     /**
      * Join query with vet records
      */
-
     public JSONArray getVetRecords(int id);
 
     /**
@@ -44,5 +56,9 @@ public interface ILivestockService {
     public JSONArray getAnimalCountType();
 
     public JSONArray getAnimalCountTypeByAge(int age);
+
+    public List<LivestockDto> getFilteredLivestock(String harvestable, AnimalType animalType, CropType diet, int minAge, int maxAge,
+                                                   int minTagID, int maxTagID, int minWaterSpent, int minFoodSpent);
+
 
 }
