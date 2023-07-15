@@ -3,21 +3,17 @@ package com.server.service.impl;
 import com.server.dao.interfaces.ILivestockDao;
 import com.server.database.DatabaseConnectionHandler;
 import com.server.dto.LivestockDto;
-import com.server.model.enums.ActionType;
 import com.server.model.enums.AnimalType;
 import com.server.model.enums.CropType;
 import com.server.model.filters.LivestockFilterModel;
 import com.server.model.models.livestock.LivestockModel;
-import com.server.model.models.livestock.Livestock_4_Model;
 import com.server.service.BaseService;
 import com.server.service.interfaces.ILivestockService;
-import jakarta.servlet.http.HttpServletRequest;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +38,14 @@ public class LivestockService extends BaseService implements ILivestockService {
     public List<LivestockDto> getLivestock() {
         List<LivestockModel> livestockList = livestockDao.getLivestock();
         return toDto(livestockList);
+    }
+
+    /**
+     * Retrieves livestock with given tagID
+     */
+    public LivestockDto getLivestock(int tagID){
+        LivestockModel livestockModel = livestockDao.getLivestock(tagID);
+        return toDto(livestockModel);
     }
 
     /**

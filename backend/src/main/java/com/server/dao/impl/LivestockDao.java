@@ -25,6 +25,10 @@ public class LivestockDao extends BaseDao implements ILivestockDao {
         return livestockMapper.getAllLivestock();
     }
 
+    public LivestockModel getLivestock(int tagID){
+        return livestockMapper.getLivestockByID(tagID);
+    }
+
     @Override
     @Transactional
     public void insertLivestock(LivestockModel livestockModel) {

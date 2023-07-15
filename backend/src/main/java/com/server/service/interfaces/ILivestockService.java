@@ -1,12 +1,8 @@
 package com.server.service.interfaces;
 
 import com.server.dto.LivestockDto;
-import jakarta.servlet.http.HttpServletRequest;
-import com.server.model.enums.ActionType;
 import com.server.model.enums.AnimalType;
 import com.server.model.enums.CropType;
-import com.server.model.models.livestock.LivestockModel;
-import com.server.model.models.livestock.Livestock_4_Model;
 import org.json.JSONArray;
 
 import java.util.List;
@@ -19,6 +15,11 @@ public interface ILivestockService {
      * @return
      */
     public List<LivestockDto> getLivestock();
+
+    /**
+     * Get livestock with specific tagID
+     */
+    public LivestockDto getLivestock(int tagID);
 
     /**
      * Update the livestock based on tagID.

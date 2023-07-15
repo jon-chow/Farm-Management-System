@@ -43,6 +43,16 @@ public class LivestockController {
     }
 
     /**
+     * Handles Retrieving Livestock Requests
+     * GET /api/v1/livestock/{tagID}
+     */
+    @GetMapping(value = "/{tagID}")
+    public RestResult<LivestockDto> getLivestock(@PathVariable("tagID") int tagID) {
+        LivestockDto livestock = system.getLivestock(tagID);
+        return RestResult.success(livestock);
+    }
+
+    /**
      * Handles Insert Livestock Requests
      * <p>
      * POST /api/v1/livestock

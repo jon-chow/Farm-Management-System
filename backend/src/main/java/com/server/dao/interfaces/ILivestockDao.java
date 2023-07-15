@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ILivestockDao {
     public List<LivestockModel> getLivestock();
+    public LivestockModel getLivestock(int tagID);
     public void insertLivestock(LivestockModel livestockModel);
     public void updateLivestock(LivestockModel livestockModel, int tagID);
     public void deleteLivestock(int tagID);
