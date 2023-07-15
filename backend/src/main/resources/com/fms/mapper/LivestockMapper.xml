@@ -16,6 +16,18 @@
         FROM livestock
         ORDER BY tagID
     </select>
+    <select id="getLivestockByID">
+        SELECT tag_id AS tagID,
+        animal_type AS animalType,
+        age AS age,
+        diet AS diet,
+        weight AS weight,
+        last_fed AS lastFed,
+        harvestable AS harvestable,
+        last_violated_for_harvested_goods AS lastViolatedForHarvestedGoods
+        FROM livestock
+        WHERE tag_id = #{tagID}
+    </select>
 
     <insert id="insertLivestock">
         INSERT INTO livestock (tag_id, animal_type, age, diet, weight, last_fed, harvestable,
