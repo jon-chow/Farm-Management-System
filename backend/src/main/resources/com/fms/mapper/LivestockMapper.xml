@@ -16,6 +16,7 @@
         FROM livestock
         ORDER BY tagID
     </select>
+
     <select id="getLivestockByID">
         SELECT tag_id AS tagID,
         animal_type AS animalType,
